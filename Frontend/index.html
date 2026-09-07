@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabelSetu — Ministry of Consumer Affairs, Food &amp; Public Distribution</title>
+  <meta name="description" content="LabelSetu is a product label compliance verification tool by the Department of Consumer Affairs. Upload a product label photo to check if it meets the required declarations under the Legal Metrology Act.">
+  <meta property="og:title" content="LabelSetu — Product Label Compliance Verification">
+  <meta property="og:description" content="Verify your product label declarations. A service by the Ministry of Consumer Affairs, Food &amp; Public Distribution.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans', 'Segoe UI', Arial, sans-serif;
+      font-size: 14px;
+      color: #333;
+      background: #f5f6fa;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #1a237e; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { cursor: pointer; font-family: inherit; }
+
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: #1a237e; color: #fff;
+      padding: 8px 18px; border-radius: 0 0 4px 4px;
+      font-size: 13px; z-index: 9999;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── TOP BAR ────────────────────── */
+    .top-bar {
+      background: #1a237e;
+      color: #fff;
+      font-size: 12px;
+      border-bottom: 3px solid #ff6f00;
+    }
+    .top-bar-inner {
+      max-width: 1200px; margin: 0 auto; padding: 6px 20px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .top-bar-left { display: flex; gap: 16px; align-items: center; }
+    .top-bar-left a { color: rgba(255,255,255,.85); font-size: 11px; }
+    .top-bar-left a:hover { color: #fff; }
+    .top-bar-right { display: flex; gap: 12px; align-items: center; }
+    .text-size-controls { display: flex; gap: 4px; }
+    .text-size-controls button {
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+      color: #fff; width: 24px; height: 24px; border-radius: 3px; font-size: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .text-size-controls button:hover { background: rgba(255,255,255,.25); }
+
+    /* ── GOVT HEADER ───────────────── */
+    .govt-header { background: #fff; border-bottom: 1px solid #e0e0e0; }
+    .govt-header-inner {
+      max-width: 1200px; margin: 0 auto; padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+    .govt-brand { display: flex; align-items: center; gap: 14px; }
+    .emblem { width: 64px; height: 64px; flex-shrink: 0; }
+    .emblem img { width: 100%; height: 100%; object-fit: contain; }
+    .brand-text { border-left: 2px solid #ff6f00; padding-left: 14px; }
+    .brand-text-hi { font-size: 14px; font-weight: 600; color: #1a237e; line-height: 1.3; }
+    .brand-text-en { font-size: 12px; color: #555; line-height: 1.3; }
+    .brand-text-service { font-size: 11px; color: #888; margin-top: 2px; }
+    .header-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .header-search { display: flex; border: 1px solid #ccc; border-radius: 4px; overflow: hidden; }
+    .header-search input { border: none; padding: 8px 12px; font-size: 13px; width: 200px; outline: none; font-family: inherit; }
+    .header-search button { background: #1a237e; border: none; color: #fff; padding: 8px 12px; font-size: 14px; }
+
+    /* ── LANGUAGE SELECTOR ──────────── */
+    .lang-selector { position: relative; }
+    .lang-btn {
+      background: none; border: 1px solid #ccc; border-radius: 4px;
+      padding: 7px 12px; font-size: 13px; color: #333;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .lang-btn:hover { border-color: #1a237e; }
+    .lang-btn svg { width: 16px; height: 16px; }
+    .lang-dropdown {
+      display: none; position: absolute; top: 100%; right: 0;
+      background: #fff; border: 1px solid #ddd; border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12); z-index: 500;
+      min-width: 200px; padding: 8px 0; margin-top: 4px;
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-dropdown-title {
+      padding: 8px 16px; font-size: 13px; font-weight: 600; color: #333;
+      border-bottom: 1px solid #eee; margin-bottom: 4px;
+    }
+    .lang-option {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 16px; font-size: 13px; color: #333; cursor: pointer;
+      border: none; background: none; width: 100%; text-align: left; font-family: inherit;
+    }
+    .lang-option:hover { background: #f0f0ff; }
+    .lang-option.active { color: #1a237e; font-weight: 600; }
+    .lang-option.active::after { content: '✓'; color: #1a237e; font-weight: 700; }
+
+    /* ── MAIN NAV ──────────────────── */
+    .main-nav { background: #283593; border-bottom: 1px solid #1a237e; }
+    .main-nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 20px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    }
+    .nav-links { display: flex; align-items: center; list-style: none; gap: 0; }
+    .nav-links a {
+      display: block; padding: 12px 18px; color: rgba(255,255,255,.9);
+      font-size: 13px; font-weight: 500; transition: background .15s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,.12); text-decoration: none; color: #fff; }
+    .nav-right-links { display: flex; align-items: center; }
+    .nav-right-links a, .nav-right-links button {
+      display: flex; align-items: center; gap: 5px; padding: 12px 16px;
+      color: rgba(255,255,255,.9); font-size: 13px; font-weight: 500;
+      background: none; border: none; transition: background .15s;
+    }
+    .nav-right-links a:hover, .nav-right-links button:hover { background: rgba(255,255,255,.12); text-decoration: none; color: #fff; }
+    .login-nav-btn {
+      background: #fff !important; color: #1a237e !important;
+      border-radius: 4px !important; padding: 7px 20px !important;
+      margin: 6px 0 6px 8px; font-weight: 600 !important;
+    }
+    .login-nav-btn:hover { background: #e8eaf6 !important; }
+    .nav-toggle { display: none; background: none; border: none; color: #fff; padding: 10px; font-size: 22px; }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; flex-direction: column; width: 100%; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 20px; border-top: 1px solid rgba(255,255,255,.1); }
+      .nav-right-links { display: none; }
+      .header-search input { width: 140px; }
+    }
+
+    /* ── PAGE WRAPPER ──────────────── */
+    .page-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── HERO ───────────────────────── */
+    .hero-section { background: linear-gradient(135deg, #e8eaf6 0%, #f5f6fa 100%); padding: 40px 0; border-bottom: 1px solid #e0e0e0; }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 20px;
+      display: grid; grid-template-columns: 1fr 340px; gap: 32px; align-items: start;
+    }
+    .hero-main h1 { font-size: 28px; font-weight: 700; color: #1a237e; margin-bottom: 8px; line-height: 1.3; }
+    .hero-main h1 span { color: #333; font-weight: 400; font-size: 16px; display: block; margin-top: 4px; }
+    .hero-search-box {
+      margin: 24px 0; display: flex; background: #fff;
+      border: 2px solid #c5cae9; border-radius: 30px; overflow: hidden; max-width: 500px;
+    }
+    .hero-search-box:focus-within { border-color: #1a237e; }
+    .hero-search-box input { flex: 1; border: none; padding: 12px 20px; font-size: 14px; outline: none; background: transparent; font-family: inherit; }
+    .hero-search-box button {
+      background: #1a237e; border: none; color: #fff;
+      width: 44px; height: 44px; border-radius: 50%; margin: 3px;
+      font-size: 16px; display: flex; align-items: center; justify-content: center;
+    }
+    .quick-actions { display: flex; gap: 24px; margin-top: 28px; flex-wrap: wrap; }
+    .quick-action { display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; text-align: center; width: 100px; }
+    .quick-action-icon {
+      width: 56px; height: 56px; border-radius: 50%; background: #fff;
+      border: 2px solid #e0e0e0; display: flex; align-items: center; justify-content: center; font-size: 24px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .quick-action:hover .quick-action-icon { border-color: #1a237e; box-shadow: 0 2px 8px rgba(26,35,126,.12); }
+    .quick-action span { font-size: 12px; color: #333; font-weight: 500; line-height: 1.35; }
+
+    /* Sidebar */
+    .sidebar-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+    .sidebar-card-banner { background: linear-gradient(135deg, #1a237e, #283593); padding: 20px; text-align: center; }
+    .sidebar-card-banner h3 { color: #fff; font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+    .btn-login { background: #e53935; color: #fff; border: none; padding: 9px 28px; border-radius: 4px; font-size: 13px; font-weight: 600; }
+    .btn-login:hover { background: #c62828; }
+    .sidebar-info { padding: 16px 20px; }
+    .sidebar-info h4 { font-size: 13px; color: #555; margin-bottom: 8px; }
+    .sidebar-info p { font-size: 13px; color: #333; line-height: 1.5; }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-sidebar { order: -1; }
+    }
+
+    /* ── SECTIONS ───────────────────── */
+    .content-section { padding: 36px 0; }
+    .content-section + .content-section { border-top: 1px solid #e0e0e0; }
+    .section-heading {
+      font-size: 20px; font-weight: 700; color: #1a237e;
+      margin-bottom: 20px; padding-bottom: 10px;
+      border-bottom: 2px solid #ff6f00; display: inline-block;
+    }
+
+    /* Service cards */
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .service-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; transition: box-shadow .2s; }
+    .service-card:hover { border-color: #c5cae9; box-shadow: 0 2px 12px rgba(26,35,126,.08); }
+    .service-card-icon { width: 40px; height: 40px; background: #e8eaf6; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px; }
+    .service-card h3 { font-size: 15px; font-weight: 600; color: #333; margin-bottom: 8px; }
+    .service-card p { font-size: 13px; color: #666; margin-bottom: 14px; line-height: 1.5; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; }
+    .card-link {
+      width: 32px; height: 32px; border: 1px solid #e0e0e0; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; color: #1a237e; font-size: 14px;
+    }
+    .card-link:hover { background: #e8eaf6; text-decoration: none; }
+    .card-note { font-size: 11px; color: #e53935; font-weight: 500; }
+
+    /* Category cards */
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .category-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; }
+    .category-card h3 { font-size: 15px; font-weight: 600; color: #1a237e; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .cat-desc { font-size: 12px; color: #888; margin-bottom: 12px; }
+    .field-list { list-style: none; }
+    .field-list li { padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #444; display: flex; align-items: center; gap: 8px; }
+    .field-list li:last-child { border-bottom: none; }
+    .field-list li::before { content: ''; width: 6px; height: 6px; background: #1a237e; border-radius: 50%; flex-shrink: 0; }
+
+    /* Steps */
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .step-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #1a237e; color: #fff; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
+    .step-card h3 { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 6px; }
+    .step-card p { font-size: 13px; color: #666; line-height: 1.5; }
+
+    /* Sample result */
+    .sample-result { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; max-width: 560px; }
+    .sample-result-header { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0e0e0; }
+    .sample-result-header h3 { font-size: 15px; font-weight: 600; color: #333; }
+    .badge-fail { background: #ffebee; color: #c62828; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #f5f5f5; font-size: 13px; }
+    .result-row:last-child { border-bottom: none; }
+    .result-pass { color: #2e7d32; font-weight: 500; }
+    .result-fail { color: #c62828; font-weight: 500; }
+
+    /* FAQ */
+    .faq-container { max-width: 700px; }
+    .faq-item { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; margin-bottom: 8px; overflow: hidden; }
+    .faq-question {
+      width: 100%; background: none; border: none; padding: 14px 18px;
+      font-size: 14px; font-weight: 600; color: #333; text-align: left;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      font-family: inherit; line-height: 1.45;
+    }
+    .faq-question:hover { background: #fafafa; }
+    .faq-chevron { width: 18px; height: 18px; flex-shrink: 0; transition: transform .2s; color: #666; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer-body { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
+    .faq-item.open .faq-answer-body { max-height: 300px; }
+    .faq-answer-text { padding: 0 18px 16px; font-size: 13px; line-height: 1.65; color: #555; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .about-block { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; }
+    .about-block h3 { font-size: 14px; font-weight: 600; color: #1a237e; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .03em; }
+    .about-block p { font-size: 13px; color: #555; line-height: 1.65; margin-bottom: 10px; }
+    .about-block p:last-child { margin-bottom: 0; }
+    @media (max-width: 600px) { .about-grid { grid-template-columns: 1fr; } }
+
+    /* CTA */
+    .cta-section { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; text-align: center; padding: 32px 20px; max-width: 560px; }
+    .cta-section h2 { font-size: 18px; color: #1a237e; margin-bottom: 6px; }
+    .cta-section p { font-size: 13px; color: #666; margin-bottom: 16px; }
+    .btn-primary { background: #1a237e; color: #fff; border: none; padding: 10px 28px; border-radius: 4px; font-size: 14px; font-weight: 600; }
+    .btn-primary:hover { background: #283593; }
+    .cta-links { margin-top: 14px; font-size: 13px; color: #666; }
+    .cta-links a { color: #1a237e; font-weight: 500; }
+    .note-text { font-size: 12px; color: #888; margin-top: 12px; }
+
+    /* ── FOOTER ─────────────────────── */
+    .govt-footer { background: #1a237e; color: rgba(255,255,255,.85); margin-top: 32px; }
+    .footer-main {
+      max-width: 1200px; margin: 0 auto; padding: 32px 20px;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px;
+    }
+    .footer-col h4 { color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,.15); }
+    .footer-col p { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,.7); margin-bottom: 8px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 6px; }
+    .footer-col ul a { color: rgba(255,255,255,.7); font-size: 12px; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.15); text-align: center; padding: 14px 20px; font-size: 11px; color: rgba(255,255,255,.5); }
+    @media (max-width: 768px) { .footer-main { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-main { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to Main Content</a>
+
+<!-- ══ TOP BAR ══ -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="top-bar-left">
+      <a href="screen-reader.html" data-i18n="screen_reader">Screen Reader Access</a>
+      <span style="color:rgba(255,255,255,.3);">|</span>
+      <a href="sitemap.html" data-i18n="sitemap">Sitemap</a>
+    </div>
+    <div class="top-bar-right">
+      <div class="text-size-controls">
+        <button onclick="changeTextSize(-1)" aria-label="Decrease text size">A-</button>
+        <button onclick="changeTextSize(0)" aria-label="Default text size">A</button>
+        <button onclick="changeTextSize(1)" aria-label="Increase text size">A+</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GOVT HEADER ══ -->
+<header class="govt-header">
+  <div class="govt-header-inner">
+    <div class="govt-brand">
+      <div class="emblem">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="38" r="28" fill="none" stroke="#1a237e" stroke-width="2.5"/>
+          <text x="50" y="44" text-anchor="middle" font-size="30" fill="#1a237e" font-weight="700">🏛️</text>
+          <text x="50" y="68" text-anchor="middle" font-size="7" fill="#1a237e" font-weight="600">सत्यमेव जयते</text>
+          <line x1="20" y1="76" x2="80" y2="76" stroke="#ff6f00" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-text-hi">उपभोक्ता कार्य, खाद्य एवं सार्वजनिक वितरण मंत्रालय</div>
+        <div class="brand-text-en">Ministry of Consumer Affairs, Food &amp; Public Distribution</div>
+        <div class="brand-text-service">LabelSetu — Product Label Compliance Verification</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-search">
+        <input type="text" placeholder="Search services" aria-label="Search services">
+        <button type="button" aria-label="Search">🔍</button>
+      </div>
+      <div class="lang-selector">
+        <button class="lang-btn" id="langBtn" aria-expanded="false" onclick="toggleLangDropdown()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+          <span id="currentLangLabel">English</span>
+          <span style="font-size:10px;">▼</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <div class="lang-dropdown-title">Choose Language</div>
+          <button class="lang-option active" onclick="setLanguage('en')">English</button>
+          <button class="lang-option" onclick="setLanguage('hi')">हिन्दी</button>
+          <button class="lang-option" onclick="setLanguage('bn')">বাংলা</button>
+          <button class="lang-option" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+          <button class="lang-option" onclick="setLanguage('gu')">ગુજરાતી</button>
+          <button class="lang-option" onclick="setLanguage('ml')">മലയാളം</button>
+          <button class="lang-option" onclick="setLanguage('mr')">मराठी</button>
+          <button class="lang-option" onclick="setLanguage('or')">ଓଡ଼ିଆ</button>
+          <button class="lang-option" onclick="setLanguage('pa')">ਪੰਜਾਬੀ</button>
+          <button class="lang-option" onclick="setLanguage('ta')">தமிழ்</button>
+          <button class="lang-option" onclick="setLanguage('te')">తెలుగు</button>
+          <button class="lang-option" onclick="setLanguage('ur')">اردو</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ MAIN NAV ══ -->
+<nav class="main-nav" role="navigation" aria-label="Main navigation">
+  <div class="main-nav-inner">
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" onclick="document.getElementById('navLinksMain').classList.toggle('open')">☰</button>
+    <div class="nav-links" id="navLinksMain">
+      <a href="index.html" class="active" data-i18n="nav_home">Home</a>
+      <a href="#services" data-i18n="nav_services">Services</a>
+      <a href="#categories" data-i18n="nav_categories">Categories</a>
+      <a href="#how-it-works" data-i18n="nav_how">How it Works</a>
+      <a href="#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="#about" data-i18n="nav_about">About</a>
+    </div>
+    <div class="nav-right-links">
+      <a href="dashboard.html" id="dashboardNavLink" style="display:none;" data-i18n="nav_dashboard">Dashboard</a>
+      <a href="login.html" class="login-nav-btn" id="loginNavLink" data-i18n="nav_login">Login</a>
+      <button id="logoutBtn" style="display:none;" onclick="logoutUser()" data-i18n="nav_logout">Log out</button>
+    </div>
+  </div>
+</nav>
+
+<noscript><p style="text-align:center;padding:14px;background:#fff3cd;color:#856404;font-size:13px;border-bottom:1px solid #e0e0e0;">This website requires JavaScript. Please enable JavaScript in your browser settings.</p></noscript>
+
+<main id="main-content">
+
+  <!-- ══ HERO ══ -->
+  <section class="hero-section">
+    <div class="hero-inner">
+      <div class="hero-main">
+        <h1 data-i18n="hero_title">Welcome to LabelSetu<span data-i18n="hero_subtitle">What do you want to verify today?</span></h1>
+        <div class="hero-search-box">
+          <input type="text" placeholder="Search services" data-i18n-placeholder="search_placeholder" aria-label="Search services">
+          <button type="button" aria-label="Search">🔍</button>
+        </div>
+        <div class="quick-actions">
+          <div class="quick-action" onclick="goToCheck()">
+            <div class="quick-action-icon">📋</div>
+            <span data-i18n="qa_check">Check Label</span>
+          </div>
+          <div class="quick-action" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">
+            <div class="quick-action-icon">📦</div>
+            <span data-i18n="qa_browse">Browse Categories</span>
+          </div>
+          <div class="quick-action" onclick="goToDashboard()">
+            <div class="quick-action-icon">📊</div>
+            <span data-i18n="qa_dashboard">My Dashboard</span>
+          </div>
+          <div class="quick-action" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">
+            <div class="quick-action-icon">❓</div>
+            <span data-i18n="qa_guide">User Guide</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-card-banner">
+            <h3 data-i18n="sidebar_cta">Check all your product labels in one place</h3>
+            <button class="btn-login" onclick="goToCheck()" data-i18n="nav_login">Login</button>
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <div class="sidebar-info">
+            <h4 data-i18n="did_you_know">Did you know?</h4>
+            <p data-i18n="did_you_know_text">Under the Legal Metrology (Packaged Commodities) Rules, every pre-packaged commodity must declare specific information on its label, including the manufacturer's name, MRP, net quantity, and more.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-wrapper">
+
+    <!-- ══ SERVICES ══ -->
+    <section class="content-section" id="services">
+      <h2 class="section-heading" data-i18n="services_heading">Services on LabelSetu</h2>
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="service-card-icon">🔍</div>
+          <h3 data-i18n="svc_check_title">Check a Product Label</h3>
+          <p data-i18n="svc_check_desc">Upload a photo of a product label and verify whether it carries all the declarations required under the applicable rules.</p>
+          <div class="card-footer">
+            <a href="#" class="card-link" onclick="goToCheck(); return false;" aria-label="Check a product label">→</a>
+            <span class="card-note" data-i18n="login_required">Login required</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-icon">📖</div>
+          <h3 data-i18n="svc_browse_title">Browse Required Declarations</h3>
+          <p data-i18n="svc_browse_desc">View the list of mandatory declarations for each supported product category. No account required.</p>
+          <div class="card-footer">
+            <a href="#categories" class="card-link" aria-label="Browse categories">→</a>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-icon">📊</div>
+          <h3 data-i18n="svc_dashboard_title">Review Past Verifications</h3>
+          <p data-i18n="svc_dashboard_desc">Access your verification history. Every label check is saved and can be reviewed or re-run at any time.</p>
+          <div class="card-footer">
+            <a href="#" class="card-link" onclick="goToDashboard(); return false;" aria-label="Open dashboard">→</a>
+            <span class="card-note" data-i18n="login_required">Login required</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CATEGORIES ══ -->
+    <section class="content-section" id="categories">
+      <h2 class="section-heading" data-i18n="cat_heading">Supported Product Categories</h2>
+      <p class="note-text" style="margin-top:-12px;margin-bottom:16px;" data-i18n="cat_desc">The required declarations differ by product type. Below are the fields checked in each supported category.</p>
+      <div class="category-grid">
+        <div class="category-card">
+          <h3>🍪 <span data-i18n="cat_food">Packaged Food</span></h3>
+          <p class="cat-desc" data-i18n="cat_food_desc">Basic declarations expected on packaged food items</p>
+          <ul class="field-list">
+            <li data-i18n="field_mrp">MRP (Maximum Retail Price)</li>
+            <li data-i18n="field_net_qty">Net Quantity</li>
+            <li data-i18n="field_consumer_care">Consumer Care Contact</li>
+          </ul>
+        </div>
+        <div class="category-card">
+          <h3>💄 <span data-i18n="cat_cosmetics">Cosmetics &amp; Personal Care</span></h3>
+          <p class="cat-desc" data-i18n="cat_cosmetics_desc">Declarations expected on cosmetic and personal care items</p>
+          <ul class="field-list">
+            <li data-i18n="field_mfg_name">Manufacturer Name &amp; Address</li>
+            <li data-i18n="field_mrp">MRP (Maximum Retail Price)</li>
+            <li data-i18n="field_net_qty">Net Quantity</li>
+            <li data-i18n="field_origin">Country of Origin</li>
+            <li data-i18n="field_consumer_care">Consumer Care Contact</li>
+            <li data-i18n="field_mfg_date">Manufacturing Date</li>
+          </ul>
+        </div>
+        <div class="category-card">
+          <h3>📦 <span data-i18n="cat_fmcg">General FMCG</span></h3>
+          <p class="cat-desc" data-i18n="cat_fmcg_desc">Broader checklist for everyday packaged goods not covered above</p>
+          <ul class="field-list">
+            <li data-i18n="field_mfg_name">Manufacturer Name &amp; Address</li>
+            <li data-i18n="field_mrp">MRP (Maximum Retail Price)</li>
+            <li data-i18n="field_net_qty">Net Quantity</li>
+            <li data-i18n="field_origin">Country of Origin</li>
+            <li data-i18n="field_consumer_care">Consumer Care Contact</li>
+            <li data-i18n="field_mfg_date">Manufacturing Date</li>
+            <li data-i18n="field_generic_name">Generic Name of Product</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note-text" data-i18n="cat_more">Additional categories will be added as their declaration requirements are mapped.</p>
+    </section>
+
+    <!-- ══ HOW IT WORKS ══ -->
+    <section class="content-section" id="how-it-works">
+      <h2 class="section-heading" data-i18n="how_heading">How Verification Works</h2>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num">1</div><h3 data-i18n="step1_title">Upload a Photo</h3><p data-i18n="step1_desc">Take or upload a clear photograph of the product label and select the applicable product category.</p></div>
+        <div class="step-card"><div class="step-num">2</div><h3 data-i18n="step2_title">Text Extraction</h3><p data-i18n="step2_desc">The system reads and extracts the printed text from the label image automatically.</p></div>
+        <div class="step-card"><div class="step-num">3</div><h3 data-i18n="step3_title">Compliance Check</h3><p data-i18n="step3_desc">Extracted text is compared against the mandatory declarations for the selected product category.</p></div>
+        <div class="step-card"><div class="step-num">4</div><h3 data-i18n="step4_title">Verification Report</h3><p data-i18n="step4_desc">A report is generated showing which declarations are present and which are missing. Results are saved to your dashboard.</p></div>
+      </div>
+    </section>
+
+    <!-- ══ SAMPLE RESULT ══ -->
+    <section class="content-section" id="sample-result">
+      <h2 class="section-heading" data-i18n="sample_heading">Sample Verification Report</h2>
+      <div class="sample-result">
+        <div class="sample-result-header"><h3 data-i18n="sample_category">Cosmetics Label</h3><span class="badge-fail" data-i18n="sample_badge">2 fields missing</span></div>
+        <div class="result-row"><span>MRP (Maximum Retail Price)</span><span class="result-pass">✓ ₹149</span></div>
+        <div class="result-row"><span>Net Quantity</span><span class="result-pass">✓ 250 g</span></div>
+        <div class="result-row"><span>Manufacturing Date</span><span class="result-fail">✕ Missing</span></div>
+        <div class="result-row"><span>Country of Origin</span><span class="result-fail">✕ Missing</span></div>
+      </div>
+      <p class="note-text" data-i18n="sample_note">Illustrative example only. Actual results will depend on the label image uploaded.</p>
+    </section>
+
+    <!-- ══ FAQ ══ -->
+    <section class="content-section" id="faq">
+      <h2 class="section-heading" data-i18n="faq_heading">Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span data-i18n="faq1_q">Is a LabelSetu verification an official or legal certification?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-answer-body"><p class="faq-answer-text" data-i18n="faq1_a">No. LabelSetu is a self-check tool designed to help manufacturers and sellers identify missing declarations before a product reaches the market. It does not constitute a legal certification and does not replace any approval or inspection by a regulatory body.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span data-i18n="faq2_q">What kind of photograph is required?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-answer-body"><p class="faq-answer-text" data-i18n="faq2_a">A clear, well-lit, straight-on photograph of the product label is recommended. Blurry, angled, or partially obscured images may result in incomplete text extraction and inaccurate verification results.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span data-i18n="faq3_q">Is an account required to use this service?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-answer-body"><p class="faq-answer-text" data-i18n="faq3_a">Browsing the supported categories and understanding the verification process does not require an account. An account is required to upload a label for verification and to access saved results on the dashboard.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span data-i18n="faq4_q">Which product categories are currently supported?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-answer-body"><p class="faq-answer-text" data-i18n="faq4_a">Currently, three categories are supported: Packaged Food, Cosmetics &amp; Personal Care, and General FMCG. Each category has its own set of mandatory declarations. Additional categories will be added progressively.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span data-i18n="faq5_q">Is uploaded label data stored or shared with third parties?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-answer-body"><p class="faq-answer-text" data-i18n="faq5_a">Uploaded label images are associated with your account and are accessible only to you. No data is shared with third parties or used for purposes beyond the verification service.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span data-i18n="faq6_q">What if the system marks a field as missing when it is present on the label?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-answer-body"><p class="faq-answer-text" data-i18n="faq6_a">This may occur if the text was not clearly legible in the photograph due to small print size, low contrast, or the label being partially out of frame. Re-uploading a clearer photograph usually resolves the issue.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ ABOUT ══ -->
+    <section class="content-section" id="about">
+      <h2 class="section-heading" data-i18n="about_heading">About LabelSetu</h2>
+      <div class="about-grid">
+        <div class="about-block">
+          <h3 data-i18n="about_bg_title">Background</h3>
+          <p data-i18n="about_bg_text1">Under the Legal Metrology (Packaged Commodities) Rules, pre-packaged commodities sold in India are required to carry specific declarations on their labels — including the manufacturer's name and address, MRP, net quantity, country of origin, and other fields depending on the product type.</p>
+          <p data-i18n="about_bg_text2">Non-compliance with these requirements can result in penalties under the Legal Metrology Act, 2009. Despite this, missing or incomplete declarations remain common, often due to oversight during label design or printing.</p>
+        </div>
+        <div class="about-block">
+          <h3 data-i18n="about_purpose_title">Purpose of LabelSetu</h3>
+          <p data-i18n="about_purpose_text1">LabelSetu is a verification tool that allows manufacturers, packers, and sellers to check a product label against the applicable declaration requirements before the product enters the market.</p>
+          <p data-i18n="about_purpose_text2">This service is intended for self-assessment purposes. It does not constitute regulatory approval and does not replace any inspection or certification process prescribed under the applicable laws and rules.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CTA ══ -->
+    <section class="content-section" style="display:flex;justify-content:center;">
+      <div class="cta-section">
+        <h2 data-i18n="cta_heading">Verify a Product Label</h2>
+        <p data-i18n="cta_desc">Upload a photograph of your product label to check compliance with mandatory declaration requirements.</p>
+        <button class="btn-primary" onclick="goToCheck()" data-i18n="cta_btn">Check a Label</button>
+        <div class="cta-links">
+          <span data-i18n="cta_existing">Already have an account?</span> <a href="login.html" data-i18n="nav_login">Login</a> &nbsp;·&nbsp;
+          <span data-i18n="cta_new">New user?</span> <a href="signup.html" data-i18n="cta_signup">Register</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="govt-footer">
+  <div class="footer-main">
+    <div class="footer-col">
+      <h4 data-i18n="footer_about">About This Portal</h4>
+      <p>LabelSetu is a product label compliance verification service designed to assist manufacturers, packers, and sellers in verifying whether their product labels carry all mandatory declarations as required under applicable rules.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_links">Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#how-it-works">How it Works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_related">Related Links</h4>
+      <ul>
+        <li><a href="https://consumeraffairs.nic.in" target="_blank" rel="noopener">Dept. of Consumer Affairs</a></li>
+        <li><a href="https://india.gov.in" target="_blank" rel="noopener">National Portal of India</a></li>
+        <li><a href="https://legalmetrology.gov.in" target="_blank" rel="noopener">Legal Metrology</a></li>
+        <li><a href="https://consumerhelpline.gov.in" target="_blank" rel="noopener">Consumer Helpline</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_policies">Policies</h4>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-use.html">Terms of Use</a></li>
+        <li><a href="disclaimer.html">Disclaimer</a></li>
+        <li><a href="accessibility.html">Accessibility Statement</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    Content on this website is published and managed by the Department of Consumer Affairs, Ministry of Consumer Affairs, Food &amp; Public Distribution, Government of India. · © 2026 LabelSetu. All rights reserved.
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+const TRANSLATIONS = {
+  hi: {
+    nav_home:"होम",nav_services:"सेवाएं",nav_categories:"श्रेणियाँ",nav_how:"कैसे काम करता है",nav_faq:"प्रश्नोत्तर",nav_about:"हमारे बारे में",nav_login:"लॉगिन",nav_logout:"लॉग आउट",nav_dashboard:"डैशबोर्ड",
+    hero_title:"LabelSetu में आपका स्वागत है",hero_subtitle:"आज आप क्या सत्यापित करना चाहते हैं?",search_placeholder:"सेवाएं खोजें",
+    qa_check:"लेबल जाँचें",qa_browse:"श्रेणियाँ देखें",qa_dashboard:"मेरा डैशबोर्ड",qa_guide:"उपयोगकर्ता मार्गदर्शिका",
+    sidebar_cta:"अपने सभी उत्पाद लेबल एक ही स्थान पर जाँचें",did_you_know:"क्या आप जानते हैं?",
+    did_you_know_text:"विधिक माप-विज्ञान (पैक की गई वस्तुएं) नियमों के तहत, प्रत्येक पूर्व-पैक वस्तु पर निर्माता का नाम, MRP, शुद्ध मात्रा आदि की घोषणा अनिवार्य है।",
+    services_heading:"LabelSetu की सेवाएं",svc_check_title:"उत्पाद लेबल जाँचें",svc_check_desc:"उत्पाद लेबल की तस्वीर अपलोड करें और सत्यापित करें।",
+    svc_browse_title:"अनिवार्य घोषणाएं देखें",svc_browse_desc:"प्रत्येक श्रेणी के लिए अनिवार्य घोषणाओं की सूची देखें।",
+    svc_dashboard_title:"पिछली जाँचें देखें",svc_dashboard_desc:"अपना सत्यापन इतिहास देखें।",login_required:"लॉगिन आवश्यक",
+    cat_heading:"समर्थित उत्पाद श्रेणियाँ",cat_desc:"विभिन्न उत्पाद प्रकारों के लिए अलग-अलग घोषणाएं आवश्यक हैं।",
+    cat_food:"पैक किया हुआ खाद्य",cat_food_desc:"पैक खाद्य पदार्थों पर अपेक्षित घोषणाएं",
+    cat_cosmetics:"सौंदर्य प्रसाधन",cat_cosmetics_desc:"सौंदर्य प्रसाधन उत्पादों पर अपेक्षित घोषणाएं",
+    cat_fmcg:"सामान्य FMCG",cat_fmcg_desc:"अन्य पैक सामानों के लिए जाँच सूची",
+    field_mrp:"MRP (अधिकतम खुदरा मूल्य)",field_net_qty:"शुद्ध मात्रा",field_consumer_care:"उपभोक्ता सेवा संपर्क",
+    field_mfg_name:"निर्माता का नाम और पता",field_origin:"मूल देश",field_mfg_date:"निर्माण तिथि",field_generic_name:"उत्पाद का सामान्य नाम",
+    cat_more:"अतिरिक्त श्रेणियाँ जोड़ी जाएंगी।",how_heading:"सत्यापन कैसे काम करता है",
+    step1_title:"तस्वीर अपलोड करें",step1_desc:"उत्पाद लेबल की स्पष्ट तस्वीर लें और श्रेणी चुनें।",
+    step2_title:"टेक्स्ट निकालना",step2_desc:"सिस्टम लेबल से मुद्रित टेक्स्ट स्वचालित रूप से पढ़ता है।",
+    step3_title:"अनुपालन जाँच",step3_desc:"निकाले गए टेक्स्ट की तुलना अनिवार्य घोषणाओं से की जाती है।",
+    step4_title:"सत्यापन रिपोर्ट",step4_desc:"रिपोर्ट दिखाती है कि कौन सी घोषणाएं मौजूद हैं और कौन सी गायब हैं।",
+    sample_heading:"नमूना सत्यापन रिपोर्ट",faq_heading:"अक्सर पूछे जाने वाले प्रश्न",
+    faq1_q:"क्या LabelSetu सत्यापन एक आधिकारिक प्रमाणन है?",faq1_a:"नहीं। LabelSetu एक स्व-जाँच उपकरण है।",
+    faq2_q:"किस प्रकार की तस्वीर आवश्यक है?",faq2_a:"स्पष्ट, अच्छी रोशनी वाली, सीधी तस्वीर।",
+    faq3_q:"क्या खाता आवश्यक है?",faq3_a:"श्रेणियाँ देखने के लिए नहीं। लेबल जाँच के लिए हाँ।",
+    faq4_q:"कौन सी श्रेणियाँ समर्थित हैं?",faq4_a:"तीन: पैक खाद्य, सौंदर्य प्रसाधन, और सामान्य FMCG।",
+    faq5_q:"क्या डेटा साझा किया जाता है?",faq5_a:"नहीं। आपके अपलोड केवल आपको दिखाई देते हैं।",
+    faq6_q:"यदि सिस्टम गलत दिखाए तो?",faq6_a:"स्पष्ट तस्वीर पुनः अपलोड करें।",
+    about_heading:"LabelSetu के बारे में",about_bg_title:"पृष्ठभूमि",about_purpose_title:"LabelSetu का उद्देश्य",
+    about_bg_text1:"विधिक माप-विज्ञान नियमों के तहत, पूर्व-पैक वस्तुओं पर विशिष्ट घोषणाएं अनिवार्य हैं।",
+    about_bg_text2:"पालन न करने पर विधिक माप-विज्ञान अधिनियम, 2009 के तहत दंड हो सकता है।",
+    about_purpose_text1:"LabelSetu निर्माताओं को बाजार में प्रवेश से पहले लेबल जाँचने की सुविधा देता है।",
+    about_purpose_text2:"यह सेवा स्व-मूल्यांकन के लिए है।",
+    cta_heading:"उत्पाद लेबल सत्यापित करें",cta_desc:"अनुपालन जाँचने के लिए लेबल की तस्वीर अपलोड करें।",
+    cta_btn:"लेबल जाँचें",cta_existing:"खाता है?",cta_new:"नए उपयोगकर्ता?",cta_signup:"पंजीकरण",
+    screen_reader:"स्क्रीन रीडर एक्सेस",sitemap:"साइटमैप",
+    footer_about:"इस पोर्टल के बारे में",footer_links:"त्वरित लिंक",footer_related:"संबंधित लिंक",footer_policies:"नीतियाँ",
+  },
+  bn:{nav_home:"হোম",nav_services:"পরিষেবা",nav_login:"লগইন",hero_title:"LabelSetu-তে স্বাগতম",hero_subtitle:"আজ আপনি কী যাচাই করতে চান?",nav_faq:"জিজ্ঞাসা",nav_about:"আমাদের সম্পর্কে",nav_categories:"বিভাগ",nav_how:"কিভাবে কাজ করে"},
+  kn:{nav_home:"ಮುಖಪುಟ",nav_services:"ಸೇವೆಗಳು",nav_login:"ಲಾಗಿನ್",hero_title:"LabelSetu ಗೆ ಸ್ವಾಗತ",hero_subtitle:"ಇಂದು ನೀವು ಏನನ್ನು ಪರಿಶೀಲಿಸಲು ಬಯಸುತ್ತೀರಿ?",nav_faq:"FAQ",nav_about:"ನಮ್ಮ ಬಗ್ಗೆ",nav_categories:"ವಿಭಾಗಗಳು",nav_how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ"},
+  gu:{nav_home:"ઘર",nav_services:"સેવાઓ",nav_login:"લૉગિન",hero_title:"LabelSetu માં આપનું સ્વાગત છે",hero_subtitle:"આજે તમે શું ચકાસવા માંગો છો?",nav_faq:"FAQ",nav_about:"અમારા વિશે",nav_categories:"શ્રેણીઓ",nav_how:"કેવી રીતે કામ કરે છે"},
+  ml:{nav_home:"ഹോം",nav_services:"സേവനങ്ങൾ",nav_login:"ലോഗിൻ",hero_title:"LabelSetu-ലേക്ക് സ്വാഗതം",hero_subtitle:"ഇന്ന് നിങ്ങൾ എന്താണ് പരിശോധിക്കാൻ ആഗ്രഹിക്കുന്നത്?",nav_faq:"FAQ",nav_about:"ഞങ്ങളെ കുറിച്ച്",nav_categories:"വിഭാഗങ്ങൾ",nav_how:"എങ്ങനെ പ്രവർത്തിക്കുന്നു"},
+  mr:{nav_home:"मुख्यपृष्ठ",nav_services:"सेवा",nav_login:"लॉगिन",hero_title:"LabelSetu वर आपले स्वागत",hero_subtitle:"आज तुम्हाला काय सत्यापित करायचे आहे?",nav_faq:"प्रश्नोत्तरे",nav_about:"आमच्याबद्दल",nav_categories:"श्रेण्या",nav_how:"कसे कार्य करते"},
+  or:{nav_home:"ମୂଳ ପୃଷ୍ଠା",nav_services:"ସେବା",nav_login:"ଲଗଇନ",hero_title:"LabelSetu କୁ ସ୍ୱାଗତ",hero_subtitle:"ଆଜି ଆପଣ କ'ଣ ଯାଞ୍ଚ କରିବାକୁ ଚାହୁଁଛନ୍ତି?",nav_faq:"FAQ",nav_about:"ଆମ ବିଷୟରେ",nav_categories:"ଶ୍ରେଣୀ",nav_how:"କିପରି କାମ କରେ"},
+  pa:{nav_home:"ਘਰ",nav_services:"ਸੇਵਾਵਾਂ",nav_login:"ਲੌਗਿਨ",hero_title:"LabelSetu ਵਿੱਚ ਜੀ ਆਇਆਂ ਨੂੰ",hero_subtitle:"ਅੱਜ ਤੁਸੀਂ ਕੀ ਪੜਤਾਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?",nav_faq:"FAQ",nav_about:"ਸਾਡੇ ਬਾਰੇ",nav_categories:"ਸ਼੍ਰੇਣੀਆਂ",nav_how:"ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ"},
+  ta:{nav_home:"முகப்பு",nav_services:"சேவைகள்",nav_login:"உள்நுழை",hero_title:"LabelSetu-க்கு வரவேற்கிறோம்",hero_subtitle:"இன்று நீங்கள் என்ன சரிபார்க்க விரும்புகிறீர்கள்?",nav_faq:"FAQ",nav_about:"எங்களைப் பற்றி",nav_categories:"வகைகள்",nav_how:"எப்படி வேலை செய்கிறது"},
+  te:{nav_home:"హోమ్",nav_services:"సేవలు",nav_login:"లాగిన్",hero_title:"LabelSetu కి స్వాగతం",hero_subtitle:"ఈ రోజు మీరు ఏమి ధృవీకరించాలనుకుంటున్నారు?",nav_faq:"FAQ",nav_about:"మా గురించి",nav_categories:"వర్గాలు",nav_how:"ఎలా పని చేస్తుంది"},
+  ur:{nav_home:"ہوم",nav_services:"خدمات",nav_login:"لاگ ان",hero_title:"LabelSetu میں خوش آمدید",hero_subtitle:"آج آپ کیا تصدیق کرنا چاہتے ہیں؟",nav_faq:"سوالات",nav_about:"ہمارے بارے میں",nav_categories:"زمرے",nav_how:"کیسے کام کرتا ہے"},
+};
+const LANG_NAMES={en:"English",hi:"हिन्दी",bn:"বাংলা",kn:"ಕನ್ನಡ",gu:"ગુજરાતી",ml:"മലയാളം",mr:"मराठी",or:"ଓଡ଼ିଆ",pa:"ਪੰਜਾਬੀ",ta:"தமிழ்",te:"తెలుగు",ur:"اردو"};
+let currentLang=localStorage.getItem('labelsetu_lang')||'en';
+
+function applyTranslations(lang){
+  const dict=TRANSLATIONS[lang]||{};
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(dict[k])el.textContent=dict[k];});
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const k=el.getAttribute('data-i18n-placeholder');if(dict[k])el.placeholder=dict[k];});
+  document.querySelectorAll('.lang-option').forEach(b=>b.classList.toggle('active',b.textContent.trim()===LANG_NAMES[lang]));
+  document.getElementById('currentLangLabel').textContent=LANG_NAMES[lang];
+  document.documentElement.setAttribute('dir',lang==='ur'?'rtl':'ltr');
+  document.documentElement.setAttribute('lang',lang);
+}
+
+function setLanguage(lang){
+  currentLang=lang;localStorage.setItem('labelsetu_lang',lang);
+  if(lang==='en'){location.reload();return;}
+  applyTranslations(lang);toggleLangDropdown();
+}
+function toggleLangDropdown(){
+  const dd=document.getElementById('langDropdown'),btn=document.getElementById('langBtn');
+  dd.classList.toggle('open');btn.setAttribute('aria-expanded',dd.classList.contains('open'));
+}
+document.addEventListener('click',e=>{if(!e.target.closest('.lang-selector')){document.getElementById('langDropdown').classList.remove('open');document.getElementById('langBtn').setAttribute('aria-expanded','false');}});
+
+let textSizeLevel=0;
+function changeTextSize(d){
+  if(d===0)textSizeLevel=0;
+  else textSizeLevel=Math.max(-2,Math.min(3,textSizeLevel+d));
+  var zoomLevels={'-2':'85%','-1':'92%','0':'100%','1':'110%','2':'120%','3':'130%'};
+  document.body.style.zoom=zoomLevels[textSizeLevel];
+  localStorage.setItem('labelsetu_zoom',textSizeLevel);
+}
+// Restore saved zoom on load
+(function(){var saved=localStorage.getItem('labelsetu_zoom');if(saved){textSizeLevel=parseInt(saved);var zl={'-2':'85%','-1':'92%','0':'100%','1':'110%','2':'120%','3':'130%'};document.body.style.zoom=zl[textSizeLevel]||'100%';}})();
+
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item'),isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-question').setAttribute('aria-expanded','false');});
+  if(!isOpen){item.classList.add('open');btn.setAttribute('aria-expanded','true');}
+}
+
+function goToCheck(){window.location.href=getCurrentUser()?'upload.html':'login.html';}
+function goToDashboard(){window.location.href=getCurrentUser()?'dashboard.html':'login.html';}
+function logoutUser(){if(typeof logout==='function')logout();else{localStorage.removeItem('user');location.reload();}}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  if(currentLang!=='en')applyTranslations(currentLang);
+  if(typeof getCurrentUser==='function'&&getCurrentUser()){
+    document.getElementById('loginNavLink').style.display='none';
+    document.getElementById('dashboardNavLink').style.display='flex';
+    document.getElementById('logoutBtn').style.display='flex';
+  }
+});
+</script>
+</body>
+</html>

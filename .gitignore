@@ -1,0 +1,15 @@
+cat > .gitignore <<'EOF'
+# Node
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# macOS
+.DS_Store
+
+# Uploads
+Backend/upload/
+Backend/uploads/
+EOF

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screen Reader Access — LabelSetu | Ministry of Consumer Affairs</title>
+  <meta name="description" content="Screen Reader Access information for LabelSetu, Ministry of Consumer Affairs, Food &amp; Public Distribution, Government of India. Compatibility guidelines, assistive tools, keyboard shortcuts, and zoom instructions.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans', 'Segoe UI', Arial, sans-serif;
+      font-size: 14px;
+      color: #333;
+      background: #f5f6fa;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #1a237e; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { cursor: pointer; font-family: inherit; }
+
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: #1a237e; color: #fff;
+      padding: 8px 18px; border-radius: 0 0 4px 4px;
+      font-size: 13px; z-index: 9999;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── TOP BAR ────────────────────── */
+    .top-bar {
+      background: #1a237e;
+      color: #fff;
+      font-size: 12px;
+      border-bottom: 3px solid #ff6f00;
+    }
+    .top-bar-inner {
+      max-width: 1200px; margin: 0 auto; padding: 6px 20px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .top-bar-left { display: flex; gap: 16px; align-items: center; }
+    .top-bar-left a { color: rgba(255,255,255,.85); font-size: 11px; }
+    .top-bar-left a:hover { color: #fff; }
+    .top-bar-right { display: flex; gap: 12px; align-items: center; }
+    .text-size-controls { display: flex; gap: 4px; }
+    .text-size-controls button {
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+      color: #fff; width: 24px; height: 24px; border-radius: 3px; font-size: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .text-size-controls button:hover { background: rgba(255,255,255,.25); }
+
+    /* ── GOVT HEADER ───────────────── */
+    .govt-header { background: #fff; border-bottom: 1px solid #e0e0e0; }
+    .govt-header-inner {
+      max-width: 1200px; margin: 0 auto; padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+    .govt-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .emblem { width: 64px; height: 64px; flex-shrink: 0; }
+    .emblem svg { width: 100%; height: 100%; }
+    .brand-text { border-left: 2px solid #ff6f00; padding-left: 14px; }
+    .brand-text-hi { font-size: 14px; font-weight: 600; color: #1a237e; line-height: 1.3; }
+    .brand-text-en { font-size: 12px; color: #555; line-height: 1.3; }
+    .brand-text-service { font-size: 11px; color: #888; margin-top: 2px; }
+    .header-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .header-search { display: flex; border: 1px solid #ccc; border-radius: 4px; overflow: hidden; }
+    .header-search input { border: none; padding: 8px 12px; font-size: 13px; width: 200px; outline: none; font-family: inherit; }
+    .header-search button { background: #1a237e; border: none; color: #fff; padding: 8px 12px; font-size: 14px; }
+
+    /* ── LANGUAGE SELECTOR ──────────── */
+    .lang-selector { position: relative; }
+    .lang-btn {
+      background: none; border: 1px solid #ccc; border-radius: 4px;
+      padding: 7px 12px; font-size: 13px; color: #333;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .lang-btn:hover { border-color: #1a237e; }
+    .lang-btn svg { width: 16px; height: 16px; }
+    .lang-dropdown {
+      display: none; position: absolute; top: 100%; right: 0;
+      background: #fff; border: 1px solid #ddd; border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12); z-index: 500;
+      min-width: 200px; padding: 8px 0; margin-top: 4px;
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-dropdown-title {
+      padding: 8px 16px; font-size: 13px; font-weight: 600; color: #333;
+      border-bottom: 1px solid #eee; margin-bottom: 4px;
+    }
+    .lang-option {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 16px; font-size: 13px; color: #333; cursor: pointer;
+      border: none; background: none; width: 100%; text-align: left; font-family: inherit;
+    }
+    .lang-option:hover { background: #f0f0ff; }
+    .lang-option.active { color: #1a237e; font-weight: 600; }
+    .lang-option.active::after { content: '✓'; color: #1a237e; font-weight: 700; }
+
+    /* ── MAIN NAV ──────────────────── */
+    .main-nav { background: #283593; border-bottom: 1px solid #1a237e; }
+    .main-nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 20px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    }
+    .nav-links { display: flex; align-items: center; list-style: none; gap: 0; }
+    .nav-links a {
+      display: block; padding: 12px 18px; color: rgba(255,255,255,.9);
+      font-size: 13px; font-weight: 500; transition: background .15s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,.12); text-decoration: none; color: #fff; }
+    .nav-right-links { display: flex; align-items: center; }
+    .nav-right-links a, .nav-right-links button {
+      display: flex; align-items: center; gap: 5px; padding: 12px 16px;
+      color: rgba(255,255,255,.9); font-size: 13px; font-weight: 500;
+      background: none; border: none; transition: background .15s;
+    }
+    .nav-right-links a:hover, .nav-right-links button:hover { background: rgba(255,255,255,.12); text-decoration: none; color: #fff; }
+    .login-nav-btn {
+      background: #fff !important; color: #1a237e !important;
+      border-radius: 4px !important; padding: 7px 20px !important;
+      margin: 6px 0 6px 8px; font-weight: 600 !important;
+    }
+    .login-nav-btn:hover { background: #e8eaf6 !important; }
+    .nav-toggle { display: none; background: none; border: none; color: #fff; padding: 10px; font-size: 22px; }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; flex-direction: column; width: 100%; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 20px; border-top: 1px solid rgba(255,255,255,.1); }
+      .nav-right-links { display: none; }
+      .header-search input { width: 140px; }
+    }
+
+    /* ── PAGE WRAPPER ──────────────── */
+    .page-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── BREADCRUMB ────────────────── */
+    .breadcrumb {
+      padding: 16px 0 8px;
+      font-size: 13px;
+      color: #666;
+    }
+    .breadcrumb a { color: #1a237e; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { color: #333; font-weight: 600; }
+
+    /* ── PAGE HEADER / HERO ────────── */
+    .page-intro-header {
+      padding: 16px 0 24px;
+    }
+    .page-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a237e;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .intro-text {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.65;
+      max-width: 950px;
+    }
+
+    /* ── CONTENT SECTIONS ──────────── */
+    .content-section { padding: 28px 0; }
+    .content-section + .content-section { border-top: 1px solid #e0e0e0; }
+    .section-heading {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a237e;
+      border-bottom: 2px solid #ff6f00;
+      display: inline-block;
+      margin-bottom: 16px;
+      padding-bottom: 6px;
+    }
+
+    /* ── CARDS & BOXES ─────────────── */
+    .card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .card p {
+      font-size: 13.5px;
+      color: #444;
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* Feature highlights inside compatibility */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #fbfbfd;
+      border: 1px solid #eef0f8;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .feature-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      line-height: 1;
+      padding-top: 2px;
+    }
+    .feature-item strong {
+      display: block;
+      font-size: 13px;
+      color: #1a237e;
+      margin-bottom: 4px;
+    }
+    .feature-item p {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ── TABLES (REQUIRED SPECIFICATION) ── */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th {
+      background: #e8eaf6;
+      padding: 10px 16px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+    }
+    td {
+      padding: 10px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 13px;
+      color: #444;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tbody tr:hover {
+      background: #fafbff;
+    }
+
+    /* External link button / style */
+    .ext-link {
+      color: #1a237e;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .ext-link:hover {
+      text-decoration: underline;
+    }
+    .ext-icon {
+      font-size: 11px;
+      line-height: 1;
+    }
+
+    /* Keyboard key representation */
+    kbd.key {
+      display: inline-block;
+      padding: 2px 7px;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #1a237e;
+      background: #f0f2f8;
+      border: 1px solid #c5cae9;
+      border-bottom: 2px solid #9fa8da;
+      border-radius: 4px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08);
+      white-space: nowrap;
+    }
+
+    /* ── ZOOM INSTRUCTIONS GRID ────── */
+    .zoom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .zoom-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .zoom-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .zoom-card-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+    .zoom-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a237e;
+    }
+    .zoom-card p {
+      font-size: 12.5px;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .zoom-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .zoom-steps li {
+      font-size: 12.5px;
+      color: #444;
+      padding: 6px 0;
+      border-top: 1px solid #f0f0f0;
+      line-height: 1.5;
+    }
+    .zoom-steps li:first-child {
+      border-top: none;
+    }
+
+    /* ── ASSISTANCE / HELP CALLOUT ─── */
+    .help-box {
+      background: #e8eaf6;
+      border-left: 4px solid #1a237e;
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin-top: 8px;
+    }
+    .help-box h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a237e;
+      margin-bottom: 8px;
+    }
+    .help-box p {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.65;
+    }
+
+    /* ── FOOTER ─────────────────────── */
+    .govt-footer { background: #1a237e; color: rgba(255,255,255,.85); margin-top: 40px; }
+    .footer-main {
+      max-width: 1200px; margin: 0 auto; padding: 32px 20px;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px;
+    }
+    .footer-col h4 { color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,.15); }
+    .footer-col p { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,.7); margin-bottom: 8px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 6px; }
+    .footer-col ul a { color: rgba(255,255,255,.7); font-size: 12px; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.15); text-align: center; padding: 14px 20px; font-size: 11px; color: rgba(255,255,255,.5); }
+    @media (max-width: 768px) { .footer-main { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-main { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to Main Content</a>
+
+<!-- ══ TOP BAR ══ -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="top-bar-left">
+      <a href="screen-reader.html" data-i18n="screen_reader">Screen Reader Access</a>
+      <span style="color:rgba(255,255,255,.3);" aria-hidden="true">|</span>
+      <a href="sitemap.html" data-i18n="sitemap">Sitemap</a>
+    </div>
+    <div class="top-bar-right">
+      <div class="text-size-controls" role="group" aria-label="Text size controls">
+        <button type="button" onclick="changeTextSize(-1)" aria-label="Decrease text size">A-</button>
+        <button type="button" onclick="changeTextSize(0)" aria-label="Default text size">A</button>
+        <button type="button" onclick="changeTextSize(1)" aria-label="Increase text size">A+</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GOVT HEADER ══ -->
+<header class="govt-header">
+  <div class="govt-header-inner">
+    <a href="index.html" class="govt-brand" aria-label="LabelSetu Home - Department of Consumer Affairs">
+      <div class="emblem" aria-hidden="true">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="38" r="28" fill="none" stroke="#1a237e" stroke-width="2.5"/>
+          <text x="50" y="44" text-anchor="middle" font-size="30" fill="#1a237e" font-weight="700">🏛️</text>
+          <text x="50" y="68" text-anchor="middle" font-size="7" fill="#1a237e" font-weight="600">सत्यमेव जयते</text>
+          <line x1="20" y1="76" x2="80" y2="76" stroke="#ff6f00" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-text-hi">उपभोक्ता कार्य, खाद्य एवं सार्वजनिक वितरण मंत्रालय</div>
+        <div class="brand-text-en">Ministry of Consumer Affairs, Food &amp; Public Distribution</div>
+        <div class="brand-text-service">LabelSetu — Product Label Compliance Verification</div>
+      </div>
+    </a>
+    <div class="header-right">
+      <div class="header-search" role="search">
+        <input type="text" placeholder="Search services" aria-label="Search services">
+        <button type="button" aria-label="Search">🔍</button>
+      </div>
+      <div class="lang-selector">
+        <button class="lang-btn" id="langBtn" aria-expanded="false" aria-haspopup="true" onclick="toggleLangDropdown()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+          <span id="currentLangLabel">English</span>
+          <span style="font-size:10px;" aria-hidden="true">▼</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown" role="menu">
+          <div class="lang-dropdown-title">Choose Language</div>
+          <button type="button" class="lang-option active" role="menuitem" onclick="setLanguage('en')">English</button>
+          <button type="button" class="lang-option" role="menuitem" onclick="setLanguage('hi')">हिन्दी</button>
+          <button type="button" class="lang-option" role="menuitem" onclick="setLanguage('bn')">বাংলা</button>
+          <button type="button" class="lang-option" role="menuitem" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+          <button type="button" class="lang-option" role="menuitem" onclick="setLanguage('gu')">ગુજરાતી</button>
+          <button type="button" class="lang-option" role="menuitem" onclick="setLanguage('ml')">മലയാളം</button>
+          <button type="button" class="lang-option" role="menuitem" onclick="setLanguage('mr')">मराठी</button>
+          <button type="button" class="lang-option" role="menuitem" onclick="setLanguage('or')">ଓଡ଼ିଆ</button>
+          <button type="button" class="lang-option" role="menuitem" onclick="setLanguage('pa')">ਪੰਜਾਬੀ</button>
+          <button type="button" class="lang-option" role="menuitem" onclick="setLanguage('ta')">தமிழ்</button>
+          <button type="button" class="lang-option" role="menuitem" onclick="setLanguage('te')">తెలుగు</button>
+          <button type="button" class="lang-option" role="menuitem" onclick="setLanguage('ur')">اردو</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ MAIN NAV ══ -->
+<nav class="main-nav" role="navigation" aria-label="Main navigation">
+  <div class="main-nav-inner">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" onclick="document.getElementById('navLinksMain').classList.toggle('open')">☰</button>
+    <div class="nav-links" id="navLinksMain">
+      <a href="index.html" data-i18n="nav_home">Home</a>
+      <a href="index.html#services" data-i18n="nav_services">Services</a>
+      <a href="index.html#categories" data-i18n="nav_categories">Categories</a>
+      <a href="index.html#how-it-works" data-i18n="nav_how">How it Works</a>
+      <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="index.html#about" data-i18n="nav_about">About</a>
+    </div>
+    <div class="nav-right-links">
+      <a href="dashboard.html" id="dashboardNavLink" style="display:none;" data-i18n="nav_dashboard">Dashboard</a>
+      <a href="login.html" class="login-nav-btn" id="loginNavLink" data-i18n="nav_login">Login</a>
+      <button type="button" id="logoutBtn" style="display:none;" onclick="logoutUser()" data-i18n="nav_logout">Log out</button>
+    </div>
+  </div>
+</nav>
+
+<noscript>
+  <p style="text-align:center;padding:14px;background:#fff3cd;color:#856404;font-size:13px;border-bottom:1px solid #e0e0e0;">
+    This website requires JavaScript for some interactive controls. Standard information remains accessible.
+  </p>
+</noscript>
+
+<!-- ══ MAIN CONTENT ══ -->
+<main id="main-content">
+  <div class="page-wrapper">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html" data-i18n="nav_home">Home</a> &rsaquo; <span data-i18n="screen_reader">Screen Reader Access</span>
+    </nav>
+
+    <!-- Page Title & Overview -->
+    <section class="page-intro-header">
+      <h1 class="page-title" data-i18n="screen_reader">Screen Reader Access</h1>
+      <p class="intro-text">
+        LabelSetu is committed to ensuring that the portal is accessible to all citizens and stakeholders, regardless of the technology, device, or assistive software they use. This page provides detailed information regarding screen reader compatibility, recommended assistive technologies, keyboard navigation shortcuts, and browser zoom controls.
+      </p>
+    </section>
+
+    <!-- 1. Screen Reader Compatibility -->
+    <section class="content-section" id="compatibility">
+      <h2 class="section-heading">Screen Reader Compatibility</h2>
+      <div class="card">
+        <p>
+          The LabelSetu portal complies with <strong>World Wide Web Consortium (W3C) Web Content Accessibility Guidelines (WCAG) 2.1 level AA</strong> standards as well as the <strong>Guidelines for Indian Government Websites (GIGW)</strong>.
+        </p>
+        <p>
+          Our web pages have been structured to provide maximum accessibility for visitors using assistive technology, including screen reader applications, refreshable Braille displays, and voice command utilities.
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">🏷️</div>
+            <div>
+              <strong>Semantic Markup &amp; ARIA</strong>
+              <p>Pages use standard HTML5 landmarks, ordered heading hierarchies, and descriptive ARIA roles to support logical auditory navigation.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">🖼️</div>
+            <div>
+              <strong>Descriptive Text Equivalents</strong>
+              <p>Non-decorative imagery, state seals, and informational emblems provide alternative text descriptions for screen reader articulation.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">⏭️</div>
+            <div>
+              <strong>Skip Navigation Links</strong>
+              <p>A "Skip to Main Content" mechanism is present on every page to enable quick bypassing of repetitive header navigation.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">🎯</div>
+            <div>
+              <strong>Consistent Contrast &amp; Focus</strong>
+              <p>Visual elements conform to WCAG contrast standards, and high-visibility focus indicators allow keyboard users to easily track focus.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Table of Popular Screen Readers -->
+    <section class="content-section" id="screen-readers">
+      <h2 class="section-heading">Supported Screen Readers</h2>
+      <p style="margin-bottom: 16px; color: #555; font-size: 13px;">
+        The portal can be accessed using a variety of commercial, open-source, and native operating system screen readers. Below is a list of commonly used screen readers along with their download and information links:
+      </p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col" style="width: 22%;">Screen Reader</th>
+              <th scope="col" style="width: 20%;">Type</th>
+              <th scope="col" style="width: 26%;">Supported Platforms</th>
+              <th scope="col" style="width: 32%;">Website / Download Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>JAWS (Job Access With Speech)</strong></td>
+              <td>Commercial (Trial demo available)</td>
+              <td>Microsoft Windows</td>
+              <td>
+                <a href="https://www.freedomscientific.com/products/software/jaws/" target="_blank" rel="noopener noreferrer" class="ext-link">
+                  Visit JAWS Website <span class="ext-icon" aria-hidden="true">&#8599;</span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>NVDA (NonVisual Desktop Access)</strong></td>
+              <td>Free &amp; Open Source</td>
+              <td>Microsoft Windows</td>
+              <td>
+                <a href="https://www.nvaccess.org/download/" target="_blank" rel="noopener noreferrer" class="ext-link">
+                  Download NVDA <span class="ext-icon" aria-hidden="true">&#8599;</span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Orca</strong></td>
+              <td>Free &amp; Open Source</td>
+              <td>Linux / GNOME</td>
+              <td>
+                <a href="https://wiki.gnome.org/Projects/Orca" target="_blank" rel="noopener noreferrer" class="ext-link">
+                  Visit Orca Project <span class="ext-icon" aria-hidden="true">&#8599;</span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>VoiceOver</strong></td>
+              <td>Built-in System Feature (Free)</td>
+              <td>Apple macOS, iOS, iPadOS</td>
+              <td>
+                <a href="https://www.apple.com/accessibility/vision/" target="_blank" rel="noopener noreferrer" class="ext-link">
+                  Apple VoiceOver Guide <span class="ext-icon" aria-hidden="true">&#8599;</span>
+                </a>
+                <span style="font-size: 11px; color: #666; display: block;">(Built into macOS / iOS)</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>TalkBack</strong></td>
+              <td>Built-in System Feature (Free)</td>
+              <td>Android</td>
+              <td>
+                <a href="https://play.google.com/store/apps/details?id=com.google.android.marvin.talkback" target="_blank" rel="noopener noreferrer" class="ext-link">
+                  TalkBack on Google Play <span class="ext-icon" aria-hidden="true">&#8599;</span>
+                </a>
+                <span style="font-size: 11px; color: #666; display: block;">(Built into Android)</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Narrator</strong></td>
+              <td>Built-in System Feature (Free)</td>
+              <td>Microsoft Windows 10 / 11</td>
+              <td>
+                <a href="https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-1c4f-31f8-6202-6e2716035985" target="_blank" rel="noopener noreferrer" class="ext-link">
+                  Windows Narrator Guide <span class="ext-icon" aria-hidden="true">&#8599;</span>
+                </a>
+                <span style="font-size: 11px; color: #666; display: block;">(Built into Windows)</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. Table of Common Keyboard Shortcuts -->
+    <section class="content-section" id="keyboard-shortcuts">
+      <h2 class="section-heading">Accessibility Keyboard Shortcuts</h2>
+      <p style="margin-bottom: 16px; color: #555; font-size: 13px;">
+        Users who do not use a mouse or pointing device can navigate the portal using the following standard keyboard commands:
+      </p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col" style="width: 28%;">Keyboard Key / Shortcut</th>
+              <th scope="col" style="width: 72%;">Navigation Action / Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><kbd class="key">Tab</kbd></td>
+              <td>Move focus forward to the next interactive hyperlink, button, or form field.</td>
+            </tr>
+            <tr>
+              <td><kbd class="key">Shift</kbd> + <kbd class="key">Tab</kbd></td>
+              <td>Move focus backward to the previous interactive hyperlink, button, or form field.</td>
+            </tr>
+            <tr>
+              <td><kbd class="key">Enter</kbd></td>
+              <td>Activate the currently focused link or trigger a button action.</td>
+            </tr>
+            <tr>
+              <td><kbd class="key">Spacebar</kbd></td>
+              <td>Toggle checkbox selections, press focused buttons, or scroll down one page view.</td>
+            </tr>
+            <tr>
+              <td><kbd class="key">Alt</kbd> + <kbd class="key">&#8592;</kbd> (or <kbd class="key">Cmd</kbd> + <kbd class="key">[</kbd> on Mac)</td>
+              <td>Navigate back to the previously visited page in browser history.</td>
+            </tr>
+            <tr>
+              <td><kbd class="key">Alt</kbd> + <kbd class="key">&#8594;</kbd> (or <kbd class="key">Cmd</kbd> + <kbd class="key">]</kbd> on Mac)</td>
+              <td>Navigate forward to the next page in browser history.</td>
+            </tr>
+            <tr>
+              <td><kbd class="key">Ctrl</kbd> + <kbd class="key">F</kbd> (or <kbd class="key">Cmd</kbd> + <kbd class="key">F</kbd> on Mac)</td>
+              <td>Open browser search bar to find specific text or keywords on the active page.</td>
+            </tr>
+            <tr>
+              <td><kbd class="key">Ctrl</kbd> + <kbd class="key">Home</kbd> (or <kbd class="key">Cmd</kbd> + <kbd class="key">&#8593;</kbd> on Mac)</td>
+              <td>Move focus directly to the very top (beginning) of the webpage.</td>
+            </tr>
+            <tr>
+              <td><kbd class="key">Ctrl</kbd> + <kbd class="key">End</kbd> (or <kbd class="key">Cmd</kbd> + <kbd class="key">&#8595;</kbd> on Mac)</td>
+              <td>Move focus directly to the bottom (footer) of the webpage.</td>
+            </tr>
+            <tr>
+              <td><kbd class="key">Esc</kbd></td>
+              <td>Dismiss open dropdown dialogs (e.g. language selection menu) or modal dialogs.</td>
+            </tr>
+            <tr>
+              <td><kbd class="key">&#8593;</kbd> / <kbd class="key">&#8595;</kbd> Arrow Keys</td>
+              <td>Scroll page up or down; navigate between options inside select menus and radio buttons.</td>
+            </tr>
+            <tr>
+              <td><kbd class="key">F6</kbd></td>
+              <td>Cycle keyboard focus between the browser address bar, tab strip, and webpage body.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. Browser Zoom Instructions -->
+    <section class="content-section" id="zoom-instructions">
+      <h2 class="section-heading">Browser Zoom Instructions</h2>
+      <p style="margin-bottom: 16px; color: #555; font-size: 13px;">
+        If you need larger text or want to magnify the portal content, you can use the built-in portal controls or your browser's zoom features:
+      </p>
+
+      <div class="zoom-grid">
+        <div class="zoom-card">
+          <div class="zoom-card-header">
+            <span class="zoom-card-icon" aria-hidden="true">🔤</span>
+            <h3>Portal Text Size Controls</h3>
+          </div>
+          <p>Quickly adjust the font size across the entire page using the controls in the top navy bar:</p>
+          <ul class="zoom-steps">
+            <li><strong>A-</strong>: Decreases the base text size by 2 pixels.</li>
+            <li><strong>A</strong>: Resets the base text size to default (14px).</li>
+            <li><strong>A+</strong>: Increases the base text size by up to 4 pixels.</li>
+          </ul>
+        </div>
+
+        <div class="zoom-card">
+          <div class="zoom-card-header">
+            <span class="zoom-card-icon" aria-hidden="true">🔍</span>
+            <h3>Keyboard Zoom Shortcuts</h3>
+          </div>
+          <p>Scale the complete page (both text and layout) using standard browser keystrokes:</p>
+          <ul class="zoom-steps">
+            <li><strong>Zoom In</strong>: Press <kbd class="key">Ctrl</kbd> + <kbd class="key">+</kbd> (<kbd class="key">Cmd</kbd> + <kbd class="key">+</kbd> on Mac)</li>
+            <li><strong>Zoom Out</strong>: Press <kbd class="key">Ctrl</kbd> + <kbd class="key">-</kbd> (<kbd class="key">Cmd</kbd> + <kbd class="key">-</kbd> on Mac)</li>
+            <li><strong>Reset Zoom (100%)</strong>: Press <kbd class="key">Ctrl</kbd> + <kbd class="key">0</kbd> (<kbd class="key">Cmd</kbd> + <kbd class="key">0</kbd> on Mac)</li>
+          </ul>
+        </div>
+
+        <div class="zoom-card">
+          <div class="zoom-card-header">
+            <span class="zoom-card-icon" aria-hidden="true">🖱️</span>
+            <h3>Mouse &amp; Trackpad Scaling</h3>
+          </div>
+          <p>Smoothly scale the display view using your mouse or multi-touch trackpad:</p>
+          <ul class="zoom-steps">
+            <li>Hold <kbd class="key">Ctrl</kbd> (or <kbd class="key">Cmd</kbd> on macOS) while rotating the mouse wheel forward or backward.</li>
+            <li>On modern touchpads, use two-finger pinch-to-zoom (pinch together to shrink, spread outward to magnify).</li>
+          </ul>
+        </div>
+
+        <div class="zoom-card">
+          <div class="zoom-card-header">
+            <span class="zoom-card-icon" aria-hidden="true">🌐</span>
+            <h3>Browser Menu Settings</h3>
+          </div>
+          <p>Adjust the magnification permanently through your browser's application menu:</p>
+          <ul class="zoom-steps">
+            <li><strong>Chrome / Edge / Brave</strong>: Open Menu (⋮ or …) &gt; find <em>Zoom</em> &gt; click <code>+</code> or <code>-</code>.</li>
+            <li><strong>Mozilla Firefox</strong>: Open Application Menu (☰) &gt; find <em>Zoom</em> &gt; click <code>+</code> or <code>-</code>.</li>
+            <li><strong>Apple Safari</strong>: In menu bar, select <em>View</em> &gt; <em>Zoom In</em> or <em>Zoom Out</em>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Help & Assistance Callout -->
+    <section class="content-section" style="border-top: 1px solid #e0e0e0; padding-bottom: 10px;">
+      <div class="help-box">
+        <h3>Accessibility Assistance &amp; Feedback</h3>
+        <p>
+          We strive to make LabelSetu fully accessible to all individuals. If you experience any barrier or difficulty accessing any content, form, or service on this portal using assistive software, please let us know. You can reach out through the National Consumer Helpline or submit a query to the Department of Consumer Affairs. When reporting an issue, please specify the webpage URL, the nature of the difficulty, and the assistive technology software you are using.
+        </p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="govt-footer">
+  <div class="footer-main">
+    <div class="footer-col">
+      <h4 data-i18n="footer_about">About This Portal</h4>
+      <p>LabelSetu is a product label compliance verification service designed to assist manufacturers, packers, and sellers in verifying whether their product labels carry all mandatory declarations as required under applicable rules.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_links">Quick Links</h4>
+      <ul>
+        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a href="index.html#services" data-i18n="nav_services">Services</a></li>
+        <li><a href="index.html#categories" data-i18n="nav_categories">Categories</a></li>
+        <li><a href="index.html#how-it-works" data-i18n="nav_how">How it Works</a></li>
+        <li><a href="index.html#faq" data-i18n="nav_faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_related">Related Links</h4>
+      <ul>
+        <li><a href="https://consumeraffairs.nic.in" target="_blank" rel="noopener noreferrer">Dept. of Consumer Affairs</a></li>
+        <li><a href="https://india.gov.in" target="_blank" rel="noopener noreferrer">National Portal of India</a></li>
+        <li><a href="https://legalmetrology.gov.in" target="_blank" rel="noopener noreferrer">Legal Metrology</a></li>
+        <li><a href="https://consumerhelpline.gov.in" target="_blank" rel="noopener noreferrer">Consumer Helpline</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_policies">Policies</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Disclaimer</a></li>
+        <li><a href="screen-reader.html" data-i18n="screen_reader">Accessibility Statement</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    Content on this website is published and managed by the Department of Consumer Affairs, Ministry of Consumer Affairs, Food &amp; Public Distribution, Government of India. · © 2026 LabelSetu. All rights reserved.
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+const TRANSLATIONS = {
+  hi: {
+    nav_home:"होम",nav_services:"सेवाएं",nav_categories:"श्रेणियाँ",nav_how:"कैसे काम करता है",nav_faq:"प्रश्नोत्तर",nav_about:"हमारे बारे में",nav_login:"लॉगिन",nav_logout:"लॉग आउट",nav_dashboard:"डैशबोर्ड",
+    screen_reader:"स्क्रीन रीडर एक्सेस",sitemap:"साइटमैप",
+    footer_about:"इस पोर्टल के बारे में",footer_links:"त्वरित लिंक",footer_related:"संबंधित लिंक",footer_policies:"नीतियाँ"
+  },
+  bn:{nav_home:"হোম",nav_services:"পরিষেবা",nav_login:"লগইন",nav_faq:"জিজ্ঞাসা",nav_about:"আমাদের সম্পর্কে",nav_categories:"বিভাগ",nav_how:"কিভাবে কাজ করে",screen_reader:"স্ক্রিন রিডার অ্যাক্সেস",sitemap:"সাইটম্যাপ"},
+  kn:{nav_home:"ಮುಖಪುಟ",nav_services:"ಸೇವೆಗಳು",nav_login:"ಲಾಗಿನ್",nav_faq:"FAQ",nav_about:"ನಮ್ಮ ಬಗ್ಗೆ",nav_categories:"ವಿಭಾಗಗಳು",nav_how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",screen_reader:"ಸ್ಕ್ರೀನ್ ರೀಡರ್ ಪ್ರವೇಶ",sitemap:"ಸೈಟ್‌ಮ್ಯಾಪ್"},
+  gu:{nav_home:"ઘર",nav_services:"સેવાઓ",nav_login:"લૉગિન",nav_faq:"FAQ",nav_about:"અમારા વિશે",nav_categories:"શ્રેણીઓ",nav_how:"કેવી રીતે કામ કરે છે",screen_reader:"સ્ક્રીન રીડર એક્સેસ",sitemap:"સાઇટમેપ"},
+  ml:{nav_home:"ഹോം",nav_services:"സേവനങ്ങൾ",nav_login:"ലോഗിൻ",nav_faq:"FAQ",nav_about:"ഞങ്ങളെ കുറിച്ച്",nav_categories:"വിഭാഗങ്ങൾ",nav_how:"എങ്ങനെ പ്രവർത്തിക്കുന്നു",screen_reader:"സ്ക്രീൻ റീഡർ ആക്സസ്",sitemap:"സൈറ്റ്മാപ്പ്"},
+  mr:{nav_home:"मुख्यपृष्ठ",nav_services:"सेवा",nav_login:"लॉगिन",nav_faq:"प्रश्नोत्तरे",nav_about:"आमच्याबद्दल",nav_categories:"श्रेण्या",nav_how:"कसे कार्य करते",screen_reader:"स्क्रीन रीडर प्रवेश",sitemap:"साइटमॅप"},
+  or:{nav_home:"ମୂଳ ପୃଷ୍ଠା",nav_services:"ସେବା",nav_login:"ଲଗଇନ",nav_faq:"FAQ",nav_about:"ଆମ ବିଷୟରେ",nav_categories:"ଶ୍ରେଣୀ",nav_how:"କିପରି କାମ କରେ",screen_reader:"ସ୍କ୍ରିନ ରିଡର ଆକ୍ସେସ",sitemap:"ସାଇଟମ୍ୟାପ"},
+  pa:{nav_home:"ਘਰ",nav_services:"ਸੇਵਾਵਾਂ",nav_login:"ਲੌਗਿਨ",nav_faq:"FAQ",nav_about:"ਸਾਡੇ ਬਾਰੇ",nav_categories:"ਸ਼੍ਰੇਣੀਆਂ",nav_how:"ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ",screen_reader:"ਸਕ੍ਰੀਨ ਰੀਡਰ ਪਹੁੰਚ",sitemap:"ਸਾਈਟਮੈਪ"},
+  ta:{nav_home:"முகப்பு",nav_services:"சேவைகள்",nav_login:"உள்நுழை",nav_faq:"FAQ",nav_about:"எங்களைப் பற்றி",nav_categories:"வகைகள்",nav_how:"எப்படி வேலை செய்கிறது",screen_reader:"திரை ரீடர் அணுகல்",sitemap:"தளவரைபடம்"},
+  te:{nav_home:"హోమ్",nav_services:"సేవలు",nav_login:"లాగిన్",nav_faq:"FAQ",nav_about:"మా గురించి",nav_categories:"వర్గాలు",nav_how:"ఎలా పని చేస్తుంది",screen_reader:"స్క్రీన్ రీడర్ యాక్సెస్",sitemap:"సైట్‌మ్యాప్"},
+  ur:{nav_home:"ہوم",nav_services:"خدمات",nav_login:"لاگ ان",nav_faq:"سوالات",nav_about:"ہمارے بارے میں",nav_categories:"زمرے",nav_how:"کیسے کام کرتا ہے",screen_reader:"اسکرین ریڈر رسائی",sitemap:"سائٹ میپ"}
+};
+const LANG_NAMES={en:"English",hi:"हिन्दी",bn:"বাংলা",kn:"ಕನ್ನಡ",gu:"ગુજરાતી",ml:"മലയാളം",mr:"मराठी",or:"ଓଡ଼ିଆ",pa:"ਪੰਜਾਬੀ",ta:"தமிழ்",te:"తెలుగు",ur:"اردو"};
+let currentLang = localStorage.getItem('labelsetu_lang') || 'en';
+
+function applyTranslations(lang) {
+  const dict = TRANSLATIONS[lang] || {};
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (dict[k]) el.textContent = dict[k];
+  });
+  document.querySelectorAll('.lang-option').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim() === LANG_NAMES[lang]);
+  });
+  const lbl = document.getElementById('currentLangLabel');
+  if (lbl) lbl.textContent = LANG_NAMES[lang];
+  document.documentElement.setAttribute('dir', lang === 'ur' ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', lang);
+}
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('labelsetu_lang', lang);
+  if (lang === 'en') { location.reload(); return; }
+  applyTranslations(lang);
+  toggleLangDropdown();
+}
+
+function toggleLangDropdown() {
+  const dd = document.getElementById('langDropdown');
+  const btn = document.getElementById('langBtn');
+  if (dd && btn) {
+    dd.classList.toggle('open');
+    btn.setAttribute('aria-expanded', dd.classList.contains('open'));
+  }
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.lang-selector')) {
+    const dd = document.getElementById('langDropdown');
+    const btn = document.getElementById('langBtn');
+    if (dd && btn) {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  }
+});
+
+let textSizeLevel = 0;
+function changeTextSize(d) {
+  if (d === 0) textSizeLevel = 0;
+  else textSizeLevel = Math.max(-2, Math.min(2, textSizeLevel + d));
+  document.body.style.fontSize = (14 + textSizeLevel * 2) + 'px';
+}
+
+function logoutUser() {
+  if (typeof logout === 'function') {
+    logout();
+  } else {
+    localStorage.removeItem('user');
+    location.reload();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (currentLang !== 'en') applyTranslations(currentLang);
+  if (typeof getCurrentUser === 'function' && getCurrentUser()) {
+    const loginLink = document.getElementById('loginNavLink');
+    const dashboardLink = document.getElementById('dashboardNavLink');
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (loginLink) loginLink.style.display = 'none';
+    if (dashboardLink) dashboardLink.style.display = 'flex';
+    if (logoutBtn) logoutBtn.style.display = 'flex';
+  }
+});
+</script>
+</body>
+</html>

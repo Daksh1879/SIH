@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disclaimer — LabelSetu | Ministry of Consumer Affairs</title>
+  <meta name="description" content="Legal and regulatory disclaimer for LabelSetu, self-assessment tool by the Department of Consumer Affairs, Government of India.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans', 'Segoe UI', Arial, sans-serif;
+      font-size: 14px;
+      color: #333;
+      background: #f5f6fa;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    a { color: #1a237e; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { cursor: pointer; font-family: inherit; }
+
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: #1a237e; color: #fff;
+      padding: 8px 18px; border-radius: 0 0 4px 4px;
+      font-size: 13px; z-index: 9999;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── TOP BAR ────────────────────── */
+    .top-bar {
+      background: #1a237e;
+      color: #fff;
+      font-size: 12px;
+      border-bottom: 3px solid #ff6f00;
+    }
+    .top-bar-inner {
+      max-width: 1200px; margin: 0 auto; padding: 6px 20px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .top-bar-left { display: flex; gap: 16px; align-items: center; }
+    .top-bar-left a { color: rgba(255,255,255,.85); font-size: 11px; }
+    .top-bar-left a:hover { color: #fff; }
+    .top-bar-right { display: flex; gap: 12px; align-items: center; }
+    .text-size-controls { display: flex; gap: 4px; }
+    .text-size-controls button {
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+      color: #fff; width: 24px; height: 24px; border-radius: 3px; font-size: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .text-size-controls button:hover { background: rgba(255,255,255,.25); }
+
+    /* ── GOVT HEADER ───────────────── */
+    .govt-header { background: #fff; border-bottom: 1px solid #e0e0e0; }
+    .govt-header-inner {
+      max-width: 1200px; margin: 0 auto; padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+    .govt-brand { display: flex; align-items: center; gap: 14px; }
+    .emblem { width: 64px; height: 64px; flex-shrink: 0; }
+    .emblem svg { width: 100%; height: 100%; }
+    .brand-text { border-left: 2px solid #ff6f00; padding-left: 14px; }
+    .brand-text-hi { font-size: 14px; font-weight: 600; color: #1a237e; line-height: 1.3; }
+    .brand-text-en { font-size: 12px; color: #555; line-height: 1.3; }
+    .brand-text-service { font-size: 11px; color: #888; margin-top: 2px; }
+    .header-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .header-search { display: flex; border: 1px solid #ccc; border-radius: 4px; overflow: hidden; }
+    .header-search input { border: none; padding: 8px 12px; font-size: 13px; width: 200px; outline: none; font-family: inherit; }
+    .header-search button { background: #1a237e; border: none; color: #fff; padding: 8px 12px; font-size: 14px; }
+
+    /* ── LANGUAGE SELECTOR ──────────── */
+    .lang-selector { position: relative; }
+    .lang-btn {
+      background: none; border: 1px solid #ccc; border-radius: 4px;
+      padding: 7px 12px; font-size: 13px; color: #333;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .lang-btn:hover { border-color: #1a237e; }
+    .lang-btn svg { width: 16px; height: 16px; }
+    .lang-dropdown {
+      display: none; position: absolute; top: 100%; right: 0;
+      background: #fff; border: 1px solid #ddd; border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12); z-index: 500;
+      min-width: 200px; padding: 8px 0; margin-top: 4px;
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-dropdown-title {
+      padding: 8px 16px; font-size: 13px; font-weight: 600; color: #333;
+      border-bottom: 1px solid #eee; margin-bottom: 4px;
+    }
+    .lang-option {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 16px; font-size: 13px; color: #333; cursor: pointer;
+      border: none; background: none; width: 100%; text-align: left; font-family: inherit;
+    }
+    .lang-option:hover { background: #f0f0ff; }
+    .lang-option.active { color: #1a237e; font-weight: 600; }
+    .lang-option.active::after { content: '✓'; color: #1a237e; font-weight: 700; }
+
+    /* ── MAIN NAV ──────────────────── */
+    .main-nav { background: #283593; border-bottom: 1px solid #1a237e; }
+    .main-nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 20px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    }
+    .nav-links { display: flex; align-items: center; list-style: none; gap: 0; }
+    .nav-links a {
+      display: block; padding: 12px 18px; color: rgba(255,255,255,.9);
+      font-size: 13px; font-weight: 500; transition: background .15s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,.12); text-decoration: none; color: #fff; }
+    .nav-right-links { display: flex; align-items: center; }
+    .nav-right-links a, .nav-right-links button {
+      display: flex; align-items: center; gap: 5px; padding: 12px 16px;
+      color: rgba(255,255,255,.9); font-size: 13px; font-weight: 500;
+      background: none; border: none; transition: background .15s;
+    }
+    .nav-right-links a:hover, .nav-right-links button:hover { background: rgba(255,255,255,.12); text-decoration: none; color: #fff; }
+    .login-nav-btn {
+      background: #fff !important; color: #1a237e !important;
+      border-radius: 4px !important; padding: 7px 20px !important;
+      margin: 6px 0 6px 8px; font-weight: 600 !important;
+    }
+    .login-nav-btn:hover { background: #e8eaf6 !important; }
+    .nav-toggle { display: none; background: none; border: none; color: #fff; padding: 10px; font-size: 22px; }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; flex-direction: column; width: 100%; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 20px; border-top: 1px solid rgba(255,255,255,.1); }
+      .nav-right-links { display: none; }
+      .header-search input { width: 140px; }
+    }
+
+    /* ── PAGE CONTENT & CONTAINER ───── */
+    main { flex: 1; }
+    .page-wrapper { max-width: 1200px; margin: 0 auto; padding: 24px 20px 48px; }
+
+    .breadcrumb {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .breadcrumb a { color: #1a237e; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb-sep { color: #999; }
+
+    .content-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 28px;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a237e;
+      margin-bottom: 6px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #ff6f00;
+      display: inline-block;
+    }
+
+    .content-card h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a237e;
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+
+    .content-card p {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .content-card ul, .content-card ol {
+      padding-left: 24px;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 14px;
+    }
+
+    .content-card li {
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    .disclaimer-banner {
+      background: #ffebee;
+      border: 1px solid #ffcdd2;
+      border-left: 5px solid #c62828;
+      border-radius: 4px;
+      padding: 16px 20px;
+      margin: 18px 0 24px;
+    }
+    .disclaimer-banner h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #c62828;
+      margin-bottom: 6px;
+    }
+    .disclaimer-banner p {
+      color: #b71c1c;
+      font-size: 13px;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    .info-box {
+      background: #f5f6fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+    .info-box p {
+      margin-bottom: 0;
+      color: #444;
+    }
+
+    /* ── FOOTER ─────────────────────── */
+    .govt-footer { background: #1a237e; color: rgba(255,255,255,.85); margin-top: auto; }
+    .footer-main {
+      max-width: 1200px; margin: 0 auto; padding: 32px 20px;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px;
+    }
+    .footer-col h4 { color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,.15); }
+    .footer-col p { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,.7); margin-bottom: 8px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 6px; }
+    .footer-col ul a { color: rgba(255,255,255,.7); font-size: 12px; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.15); text-align: center; padding: 14px 20px; font-size: 11px; color: rgba(255,255,255,.5); }
+    @media (max-width: 768px) { .footer-main { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-main { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to Main Content</a>
+
+<!-- ══ TOP BAR ══ -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="top-bar-left">
+      <a href="screen-reader.html" data-i18n="screen_reader">Screen Reader Access</a>
+      <span style="color:rgba(255,255,255,.3);">|</span>
+      <a href="sitemap.html" data-i18n="sitemap">Sitemap</a>
+    </div>
+    <div class="top-bar-right">
+      <div class="text-size-controls">
+        <button onclick="changeTextSize(-1)" aria-label="Decrease text size">A-</button>
+        <button onclick="changeTextSize(0)" aria-label="Default text size">A</button>
+        <button onclick="changeTextSize(1)" aria-label="Increase text size">A+</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GOVT HEADER ══ -->
+<header class="govt-header">
+  <div class="govt-header-inner">
+    <div class="govt-brand">
+      <div class="emblem">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="38" r="28" fill="none" stroke="#1a237e" stroke-width="2.5"/>
+          <text x="50" y="44" text-anchor="middle" font-size="30" fill="#1a237e" font-weight="700">🏛️</text>
+          <text x="50" y="68" text-anchor="middle" font-size="7" fill="#1a237e" font-weight="600">सत्यमेव जयते</text>
+          <line x1="20" y1="76" x2="80" y2="76" stroke="#ff6f00" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-text-hi">उपभोक्ता कार्य, खाद्य एवं सार्वजनिक वितरण मंत्रालय</div>
+        <div class="brand-text-en">Ministry of Consumer Affairs, Food &amp; Public Distribution</div>
+        <div class="brand-text-service">LabelSetu — Product Label Compliance Verification</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-search">
+        <input type="text" placeholder="Search services" aria-label="Search services">
+        <button type="button" aria-label="Search">🔍</button>
+      </div>
+      <div class="lang-selector">
+        <button class="lang-btn" id="langBtn" aria-expanded="false" onclick="toggleLangDropdown()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+          <span id="currentLangLabel">English</span>
+          <span style="font-size:10px;">▼</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <div class="lang-dropdown-title">Choose Language</div>
+          <button class="lang-option active" onclick="setLanguage('en')">English</button>
+          <button class="lang-option" onclick="setLanguage('hi')">हिन्दी</button>
+          <button class="lang-option" onclick="setLanguage('bn')">বাংলা</button>
+          <button class="lang-option" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+          <button class="lang-option" onclick="setLanguage('gu')">ગુજરાતી</button>
+          <button class="lang-option" onclick="setLanguage('ml')">മലയാളം</button>
+          <button class="lang-option" onclick="setLanguage('mr')">मराठी</button>
+          <button class="lang-option" onclick="setLanguage('or')">ଓଡ଼ିଆ</button>
+          <button class="lang-option" onclick="setLanguage('pa')">ਪੰਜਾਬੀ</button>
+          <button class="lang-option" onclick="setLanguage('ta')">தமிழ்</button>
+          <button class="lang-option" onclick="setLanguage('te')">తెలుగు</button>
+          <button class="lang-option" onclick="setLanguage('ur')">اردو</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ MAIN NAV ══ -->
+<nav class="main-nav" role="navigation" aria-label="Main navigation">
+  <div class="main-nav-inner">
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" onclick="document.getElementById('navLinksMain').classList.toggle('open')">☰</button>
+    <div class="nav-links" id="navLinksMain">
+      <a href="index.html" data-i18n="nav_home">Home</a>
+      <a href="index.html#services" data-i18n="nav_services">Services</a>
+      <a href="index.html#categories" data-i18n="nav_categories">Categories</a>
+      <a href="index.html#how-it-works" data-i18n="nav_how">How it Works</a>
+      <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="index.html#about" data-i18n="nav_about">About</a>
+    </div>
+    <div class="nav-right-links">
+      <a href="dashboard.html" id="dashboardNavLink" style="display:none;" data-i18n="nav_dashboard">Dashboard</a>
+      <a href="login.html" class="login-nav-btn" id="loginNavLink" data-i18n="nav_login">Login</a>
+      <button id="logoutBtn" style="display:none;" onclick="logoutUser()" data-i18n="nav_logout">Log out</button>
+    </div>
+  </div>
+</nav>
+
+<noscript><p style="text-align:center;padding:14px;background:#fff3cd;color:#856404;font-size:13px;border-bottom:1px solid #e0e0e0;">This website requires JavaScript. Please enable JavaScript in your browser settings.</p></noscript>
+
+<!-- ══ CONTENT ══ -->
+<main id="main-content">
+  <div class="page-wrapper">
+    
+    <div class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Disclaimer</span>
+    </div>
+
+    <div class="content-card">
+      <h1 class="page-title">Disclaimer</h1>
+
+      <div class="disclaimer-banner">
+        <h3>Important Regulatory Notice</h3>
+        <p>LabelSetu is an automated, assistive self-assessment tool designed to support voluntary pre-market verification. It does NOT constitute an official government certification, statutory approval, or legal clearance of any product or packaging label.</p>
+      </div>
+
+      <p>This Disclaimer applies to all information, verification reports, automated assessments, and related digital materials generated or made accessible via the LabelSetu portal, operated by the Department of Consumer Affairs, Ministry of Consumer Affairs, Food &amp; Public Distribution, Government of India.</p>
+
+      <h2>1. Self-Assessment Tool — Not an Official Certification</h2>
+      <p>LabelSetu is provided solely as an advisory self-check mechanism to help manufacturers, packers, importers, and distributors identify potential omissions or oversights in mandatory labeling declarations prior to commercial distribution.</p>
+      <ul>
+        <li>A successful or passing result on LabelSetu does not mean that the product packaging has received government certification, license, or statutory endorsement.</li>
+        <li>Verification outputs must not be used, marketed, or presented to customers, retail channels, or statutory inspectors as evidence of regulatory approval.</li>
+      </ul>
+
+      <h2>2. Indicative Results and Image Quality Dependency</h2>
+      <p>The verification engine uses automated optical character recognition (OCR) and text-matching algorithms. Consequently, analytical results are strictly indicative and fundamentally dependent on input media quality:</p>
+      <ul>
+        <li><strong>Image Clarity:</strong> Low lighting, glare, reflections, motion blur, wrinkles, curvature, shadows, or low image resolution can impair the engine's ability to read declarations accurately.</li>
+        <li><strong>Stylized Fonts &amp; Orientation:</strong> Non-standard font styles, highly stylized typography, vertical layouts, multi-panel wraps, or contrasting background patterns may cause valid text to be omitted or misread.</li>
+        <li><strong>Language Variations:</strong> While the portal supports multiple Indian languages, complex script rendering or micro-printing may yield false negatives or false positives.</li>
+      </ul>
+
+      <h2>3. No Replacement for Regulatory Inspection</h2>
+      <p>LabelSetu does not replace, supersede, or substitute physical inspections, statutory audits, or official examinations conducted by authorized enforcement authorities, including:</p>
+      <ul>
+        <li>Legal Metrology Officers and Inspectors appointed under the Legal Metrology Act, 2009.</li>
+        <li>Food Safety Officers under the Food Safety and Standards Authority of India (FSSAI).</li>
+        <li>Drug Inspectors and Licensing Authorities under the Drugs and Cosmetics Act, 1940.</li>
+        <li>Central Consumer Protection Authority (CCPA) or any other statutory body.</li>
+      </ul>
+      <p>Compliance status verified through this portal does not confer legal immunity against statutory penalties, compounding proceedings, product seizures, or consumer dispute actions.</p>
+
+      <h2>4. Limitation of Liability</h2>
+      <p>The Department of Consumer Affairs, the Ministry of Consumer Affairs, Food &amp; Public Distribution, and the Government of India, including its officers, employees, and authorized agents, shall NOT be held legally or financially liable for:</p>
+      <ul>
+        <li>Any business, commercial, or operational decisions made on the basis of LabelSetu verification reports.</li>
+        <li>Packaging printing costs, manufacturing batches, marketing collateral, or distribution losses incurred due to discrepancies in automated self-checks.</li>
+        <li>Fines, statutory penalties, confiscation of goods, or legal proceedings initiated by regulatory authorities.</li>
+        <li>Errors, omissions, service interruptions, or software malfunctions of the LabelSetu portal.</li>
+      </ul>
+
+      <h2>5. Direct Consultation of Acts and Rules Required</h2>
+      <p>Users, manufacturers, and legal advisors must refer directly to the official gazetted legislation and statutory notifications. Applicable regulatory frameworks include, but are not limited to:</p>
+      <ul>
+        <li>The Legal Metrology Act, 2009 and the Legal Metrology (Packaged Commodities) Rules, 2011, as amended.</li>
+        <li>The Consumer Protection Act, 2019 and Consumer Protection (E-Commerce) Rules, 2020.</li>
+        <li>The Food Safety and Standards (Packaging and Labelling) Regulations.</li>
+        <li>The Drugs and Cosmetics Rules and respective industry-specific packaging mandates.</li>
+      </ul>
+
+      <div class="info-box">
+        <p><strong>Note for Users:</strong> In all circumstances where questions arise regarding statutory compliance, packaging dimensions, minimum font sizes, or mandatory bilingual declarations, users are advised to seek formal guidance from the concerned Controller of Legal Metrology or competent legal practitioners.</p>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="govt-footer">
+  <div class="footer-main">
+    <div class="footer-col">
+      <h4 data-i18n="footer_about">About This Portal</h4>
+      <p>LabelSetu is a product label compliance verification service designed to assist manufacturers, packers, and sellers in verifying whether their product labels carry all mandatory declarations as required under applicable rules.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_links">Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#categories">Categories</a></li>
+        <li><a href="index.html#how-it-works">How it Works</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_related">Related Links</h4>
+      <ul>
+        <li><a href="https://consumeraffairs.nic.in" target="_blank" rel="noopener">Dept. of Consumer Affairs</a></li>
+        <li><a href="https://india.gov.in" target="_blank" rel="noopener">National Portal of India</a></li>
+        <li><a href="https://legalmetrology.gov.in" target="_blank" rel="noopener">Legal Metrology</a></li>
+        <li><a href="https://consumerhelpline.gov.in" target="_blank" rel="noopener">Consumer Helpline</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_policies">Policies</h4>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-use.html">Terms of Use</a></li>
+        <li><a href="disclaimer.html">Disclaimer</a></li>
+        <li><a href="accessibility.html">Accessibility Statement</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    Content on this website is published and managed by the Department of Consumer Affairs, Ministry of Consumer Affairs, Food &amp; Public Distribution, Government of India. · © 2026 LabelSetu. All rights reserved.
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+const TRANSLATIONS = {
+  hi: {
+    nav_home:"होम",nav_services:"सेवाएं",nav_categories:"श्रेणियाँ",nav_how:"कैसे काम करता है",nav_faq:"प्रश्नोत्तर",nav_about:"हमारे बारे में",nav_login:"लॉगिन",nav_logout:"लॉग आउट",nav_dashboard:"डैशबोर्ड",
+    screen_reader:"स्क्रीन रीडर एक्सेस",sitemap:"साइटमैप",
+    footer_about:"इस पोर्टल के बारे में",footer_links:"त्वरित लिंक",footer_related:"संबंधित लिंक",footer_policies:"नीतियाँ"
+  },
+  bn:{nav_home:"হোম",nav_services:"পরিষেবা",nav_login:"লগইন",nav_faq:"জিজ্ঞাসা",nav_about:"আমাদের সম্পর্কে",nav_categories:"বিভাগ",nav_how:"কিভাবে কাজ করে"},
+  kn:{nav_home:"ಮುಖಪುಟ",nav_services:"ಸೇವೆಗಳು",nav_login:"ಲಾಗಿನ್",nav_faq:"FAQ",nav_about:"ನಮ್ಮ ಬಗ್ಗೆ",nav_categories:"ವಿಭಾಗಗಳು",nav_how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ"},
+  gu:{nav_home:"ઘર",nav_services:"સેવાઓ",nav_login:"લૉગિન",nav_faq:"FAQ",nav_about:"અમારા વિશે",nav_categories:"શ્રેણીઓ",nav_how:"કેવી રીતે काम કરે છે"},
+  ml:{nav_home:"ഹോം",nav_services:"സേവനങ്ങൾ",nav_login:"ലോഗിൻ",nav_faq:"FAQ",nav_about:"ഞങ്ങളെ കുറിച്ച്",nav_categories:"വിഭാഗങ്ങൾ",nav_how:"എങ്ങനെ പ്രവർത്തിക്കുന്നു"},
+  mr:{nav_home:"मुख्यपृष्ठ",nav_services:"सेवा",nav_login:"लॉगिन",nav_faq:"प्रश्नोत्तरे",nav_about:"आमच्याबद्दल",nav_categories:"श्रेण्या",nav_how:"कसे कार्य करते"},
+  or:{nav_home:"ମୂଳ ପୃଷ୍ଠା",nav_services:"ସେବା",nav_login:"ଲଗଇନ",nav_faq:"FAQ",nav_about:"ଆମ ବିଷୟରେ",nav_categories:"ଶ୍ରେଣୀ",nav_how:"କିପରି କାମ କରେ"},
+  pa:{nav_home:"ਘਰ",nav_services:"ਸੇਵਾਵਾਂ",nav_login:"ਲੌਗਿਨ",nav_faq:"FAQ",nav_about:"ਸਾਡੇ ਬਾਰੇ",nav_categories:"ਸ਼੍ਰੇਣੀਆਂ",nav_how:"ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ"},
+  ta:{nav_home:"முகப்பு",nav_services:"சேவைகள்",nav_login:"உள்நுழை",nav_faq:"FAQ",nav_about:"எங்களைப் பற்றி",nav_categories:"வகைகள்",nav_how:"எப்படி வேலை செய்கிறது"},
+  te:{nav_home:"హోమ్",nav_services:"సేవలు",nav_login:"లాగిన్",nav_faq:"FAQ",nav_about:"మా గురించి",nav_categories:"వర్గాలు",nav_how:"ఎలా పని చేస్తుంది"},
+  ur:{nav_home:"ہوم",nav_services:"خدمات",nav_login:"لاگ ان",nav_faq:"سوالات",nav_about:"ہمارے بارے میں",nav_categories:"زمرے",nav_how:"کیسے کام کرتا ہے"}
+};
+const LANG_NAMES={en:"English",hi:"हिन्दी",bn:"বাংলা",kn:"ಕನ್ನಡ",gu:"ગુજરાતી",ml:"മലയാളം",mr:"मराठी",or:"ଓଡ଼ିଆ",pa:"ਪੰਜਾਬੀ",ta:"தமிழ்",te:"తెలుగు",ur:"اردو"};
+let currentLang = localStorage.getItem('labelsetu_lang') || 'en';
+
+function applyTranslations(lang){
+  const dict = TRANSLATIONS[lang] || {};
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if(dict[k]) el.textContent = dict[k];
+  });
+  document.querySelectorAll('.lang-option').forEach(b => b.classList.toggle('active', b.textContent.trim() === LANG_NAMES[lang]));
+  const lbl = document.getElementById('currentLangLabel');
+  if(lbl) lbl.textContent = LANG_NAMES[lang];
+  document.documentElement.setAttribute('dir', lang === 'ur' ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', lang);
+}
+
+function setLanguage(lang){
+  currentLang = lang;
+  localStorage.setItem('labelsetu_lang', lang);
+  if(lang === 'en'){ location.reload(); return; }
+  applyTranslations(lang);
+  toggleLangDropdown();
+}
+
+function toggleLangDropdown(){
+  const dd = document.getElementById('langDropdown');
+  const btn = document.getElementById('langBtn');
+  if(dd && btn){
+    dd.classList.toggle('open');
+    btn.setAttribute('aria-expanded', dd.classList.contains('open'));
+  }
+}
+
+document.addEventListener('click', e => {
+  if(!e.target.closest('.lang-selector')){
+    const dd = document.getElementById('langDropdown');
+    const btn = document.getElementById('langBtn');
+    if(dd) dd.classList.remove('open');
+    if(btn) btn.setAttribute('aria-expanded', 'false');
+  }
+});
+
+let textSizeLevel = 0;
+function changeTextSize(d){
+  if(d === 0) textSizeLevel = 0;
+  else textSizeLevel = Math.max(-2, Math.min(2, textSizeLevel + d));
+  document.body.style.fontSize = (14 + textSizeLevel * 2) + 'px';
+}
+
+function logoutUser(){
+  if(typeof logout === 'function') logout();
+  else { localStorage.removeItem('user'); location.reload(); }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if(currentLang !== 'en') applyTranslations(currentLang);
+  if(typeof getCurrentUser === 'function' && getCurrentUser()){
+    const loginLink = document.getElementById('loginNavLink');
+    const dashLink = document.getElementById('dashboardNavLink');
+    const logoutBtn = document.getElementById('logoutBtn');
+    if(loginLink) loginLink.style.display = 'none';
+    if(dashLink) dashLink.style.display = 'flex';
+    if(logoutBtn) logoutBtn.style.display = 'flex';
+  }
+});
+</script>
+</body>
+</html>
