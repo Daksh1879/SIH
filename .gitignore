@@ -13,3 +13,7 @@ node_modules/
 Backend/upload/
 Backend/uploads/
 EOF
+# Python
+.venv/
+__pycache__/
+*.py[cod]
