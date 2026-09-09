@@ -1,3 +1,5 @@
+'use strict';
+
 const { nodeEnv } = require('../config/env');
 const { error: errorResponse } = require('../utils/apiResponse');
 
@@ -25,6 +27,27 @@ function errorHandler(err, req, res, next) {
   if (err.type === 'entity.parse.failed') {
     statusCode = 400;
     message = 'Invalid JSON in request body.';
+  }
+
+  // Mongoose duplicate key (e.g. duplicate email on registration)
+  if (err.code === 11000) {
+    statusCode = 409;
+    const field = Object.keys(err.keyPattern || {})[0] || 'field';
+    message = `An account with this ${field} already exists.`;
+  }
+
+  // Mongoose validation error
+  if (err.name === 'ValidationError') {
+    statusCode = 400;
+    message = Object.values(err.errors)
+      .map((e) => e.message)
+      .join(' ');
+  }
+
+  // Mongoose bad ObjectId (CastError)
+  if (err.name === 'CastError' && err.kind === 'ObjectId') {
+    statusCode = 400;
+    message = 'Invalid ID format.';
   }
 
   // In production, hide internal error details

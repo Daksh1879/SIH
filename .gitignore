@@ -1,10 +1,10 @@
-cat > .gitignore <<'EOF'
 # Node
 node_modules/
 
 # Environment variables
 .env
 .env.*
+!.env.example
 
 # macOS
 .DS_Store
@@ -12,7 +12,7 @@ node_modules/
 # Uploads
 Backend/upload/
 Backend/uploads/
-EOF
+
 # Python
 .venv/
 __pycache__/

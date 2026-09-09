@@ -1,15 +1,23 @@
+'use strict';
+
 const ocrService = require('./ocr.service');
 const rulesService = require('./rules.service');
 const scanStore = require('../data/scanStore');
 const AppError = require('../utils/AppError');
 
 async function runVerification({ file, category, userId }) {
-  if (!rulesService.VALID_CATEGORIES.includes(category)) {
-    throw new AppError(`Invalid category. Must be one of: ${rulesService.VALID_CATEGORIES.join(', ')}`, 400);
+  // Validate category against DB rules (replaces VALID_CATEGORIES array)
+  const validCategories = await rulesService.getValidCategories();
+  if (!validCategories.includes(category)) {
+    throw new AppError(
+      `Invalid category "${category}". Must be one of: ${validCategories.join(', ')}`,
+      400
+    );
   }
 
   const { extractedText, fields } = await ocrService.extractFields(file, category);
-  const { foundFields, missingFields, status } = rulesService.compareFields(category, fields);
+  // compareFields is now async (fetches rules from DB)
+  const { foundFields, missingFields, status } = await rulesService.compareFields(category, fields);
 
   const scan = await scanStore.createScan({
     userId,

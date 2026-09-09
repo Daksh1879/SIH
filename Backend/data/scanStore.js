@@ -1,24 +1,40 @@
-// DB TEAM: replace these internals with Mongoose calls.
-// Keep these exact function names and signatures.
+'use strict';
 
-const { randomUUID } = require('crypto');
+// Mongoose-backed replacement for the in-memory scanStore.
+// Preserves the exact function names and signatures that
+// verification.service.js and dashboard.service.js depend on.
 
-const scans = [];
+const Scan = require('../models/Scan');
 
+/**
+ * Create a scan record.
+ * Input matches what verification.service.js passes:
+ *   { userId, category, imagePath, extractedText, foundFields, missingFields, status }
+ */
 async function createScan(scan) {
-  const record = { id: randomUUID(), ...scan, createdAt: new Date() };
-  scans.push(record);
-  return record;
+  const record = await Scan.create(scan);
+  return record.toObject();
 }
 
+/**
+ * Find one scan by its string id.
+ * Returns the plain object or null.
+ * Ownership check is performed by dashboard.service.js (scan.userId !== userId).
+ */
 async function findScanById(id) {
-  return scans.find((s) => s.id === id) || null;
+  if (!id || id.length !== 24) return null;
+  const scan = await Scan.findById(id).lean({ virtuals: true });
+  return scan || null;
 }
 
+/**
+ * Find all scans for a user, newest first.
+ */
 async function findScansByUserId(userId) {
-  return scans
-    .filter((s) => s.userId === userId)
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const scans = await Scan.find({ userId })
+    .sort({ createdAt: -1 })
+    .lean({ virtuals: true });
+  return scans;
 }
 
 module.exports = { createScan, findScanById, findScansByUserId };
