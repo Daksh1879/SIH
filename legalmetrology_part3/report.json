@@ -1,0 +1,63 @@
+{
+  "scan_id": "478d6528-b4f9-4c1f-a167-4920b35958b5",
+  "compliance_score": 0,
+  "is_compliant": false,
+  "violations": [
+    {
+      "rule_id": "LM-PC-R6-1",
+      "field": "manufacturer_name",
+      "type": "missing_field",
+      "penalty_class": "A",
+      "description": "Name of manufacturer/packer/importer must be declared (Rule 6)",
+      "suggested_correction": "Add 'manufacturer name' declaration to label."
+    },
+    {
+      "rule_id": "LM-PC-R6-2",
+      "field": "manufacturer_address",
+      "type": "missing_field",
+      "penalty_class": "A",
+      "description": "Address of manufacturer/packer/importer must be declared (Rule 6)",
+      "suggested_correction": "Add 'manufacturer address' declaration to label."
+    },
+    {
+      "rule_id": "LM-PC-R9-0",
+      "field": "mrp",
+      "type": "missing_field",
+      "penalty_class": "A",
+      "description": "MRP declaration must be present on every package (Rule 9)",
+      "suggested_correction": "Add 'mrp' declaration to label."
+    },
+    {
+      "rule_id": "LM-PC-R8-1",
+      "field": "net_quantity",
+      "type": "wrong_unit",
+      "penalty_class": "A",
+      "description": "Non-standard unit in: 'Net Wt. 1 lbs'",
+      "suggested_correction": "Use SI units: g, kg, ml, l, cm, m, or number."
+    },
+    {
+      "rule_id": "LM-PC-R7-1",
+      "field": "net_quantity",
+      "type": "font_too_small",
+      "penalty_class": "B",
+      "description": "Font 2.1pt < minimum 2.8pt",
+      "suggested_correction": "Increase font size to at least 2.8pt (1mm)."
+    },
+    {
+      "rule_id": "LM-PC-R11-1",
+      "field": "manufacture_date",
+      "type": "missing_field",
+      "penalty_class": "A",
+      "description": "Month and year of manufacture/packing must be declared (Rule 11)",
+      "suggested_correction": "Add 'manufacture date' declaration to label."
+    },
+    {
+      "rule_id": "LM-PC-R6-3",
+      "field": "consumer_care",
+      "type": "missing_field",
+      "penalty_class": "B",
+      "description": "Consumer care details must be provided (Rule 6 Amendment 2017)",
+      "suggested_correction": "Add 'consumer care' declaration to label."
+    }
+  ]
+}

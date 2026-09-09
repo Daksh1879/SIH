@@ -1,0 +1,21 @@
+{
+  "scan_id": "test-002",
+  "regions": [
+    {
+      "region_id": "r1",
+      "raw_text": "Net Wt. 1 lbs",
+      "confidence": 0.91,
+      "bounding_box": {"x": 0.0, "y": 0.85, "width": 0.3, "height": 0.04},
+      "estimated_font_size_pt": 2.1,
+      "language": "en"
+    },
+    {
+      "region_id": "r2",
+      "raw_text": "Made by Sunrise Foods, Pune",
+      "confidence": 0.88,
+      "bounding_box": {"x": 0.0, "y": 0.0, "width": 0.6, "height": 0.06},
+      "estimated_font_size_pt": 3.5,
+      "language": "en"
+    }
+  ]
+}
