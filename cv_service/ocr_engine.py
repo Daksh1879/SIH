@@ -46,6 +46,7 @@ class PaddleOCREngine(OCREngine):
         # Fall back to the 2.x constructor when running an older installation.
         try:
             self._engine = PaddleOCR(
+                enable_mkldnn=False,
                 lang=OCR_LANGUAGE,
                 use_doc_orientation_classify=False,
                 use_doc_unwarping=False,
