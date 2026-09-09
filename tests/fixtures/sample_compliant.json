@@ -1,0 +1,53 @@
+{
+  "scan_id": "test-001",
+  "regions": [
+    {
+      "region_id": "r1",
+      "raw_text": "MRP Rs. 45.00 (Incl. of all taxes)",
+      "confidence": 0.97,
+      "bounding_box": {"x": 0.6, "y": 0.8, "width": 0.35, "height": 0.04},
+      "estimated_font_size_pt": 6.0,
+      "language": "en"
+    },
+    {
+      "region_id": "r2",
+      "raw_text": "Net Weight: 500g",
+      "confidence": 0.96,
+      "bounding_box": {"x": 0.0, "y": 0.85, "width": 0.3, "height": 0.04},
+      "estimated_font_size_pt": 5.5,
+      "language": "en"
+    },
+    {
+ 	"region_id": "r3a",
+  	"raw_text": "Manufactured by: Sunrise Foods Pvt. Ltd.",
+  	"confidence": 0.95,
+  	"bounding_box": {"x": 0.0, "y": 0.0, "width": 0.7, "height": 0.04},
+  	"estimated_font_size_pt": 4.5,
+  	"language": "en"
+    },
+    {
+  	"region_id": "r3b",
+  	"raw_text": "Plot No. 12, MIDC, Pune - 411019",
+  	"confidence": 0.93,
+  	"bounding_box": {"x": 0.0, "y": 0.04, "width": 0.7, "height": 0.04},
+  	"estimated_font_size_pt": 4.5,
+  	"language": "en"
+    },
+    {
+      "region_id": "r4",
+      "raw_text": "Mfg. Date: 08/2026  Best Before: 08/2027",
+      "confidence": 0.95,
+      "bounding_box": {"x": 0.0, "y": 0.9, "width": 0.5, "height": 0.04},
+      "estimated_font_size_pt": 4.0,
+      "language": "en"
+    },
+    {
+      "region_id": "r5",
+      "raw_text": "Consumer Care: 1800-123-4567 (Toll Free)",
+      "confidence": 0.93,
+      "bounding_box": {"x": 0.5, "y": 0.92, "width": 0.45, "height": 0.04},
+      "estimated_font_size_pt": 4.0,
+      "language": "en"
+    }
+  ]
+}
