@@ -1,5 +1,6 @@
 # main.py
 import argparse, json, sys
+from fastapi import FastAPI
 from pathlib import Path
 from schemas.ocr_region import OCRRegion, BoundingBox
 from classifier.classifier import classify_regions
