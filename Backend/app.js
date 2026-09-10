@@ -16,10 +16,12 @@ const app = express();
 // Security headers
 app.use(helmet());
 
-// CORS — allowed origins for local development
+// CORS — allowed origins
 const ALLOWED_ORIGINS = [
-  config.frontendUrl,
+  config.frontendUrl,               // set via FRONTEND_URL env var in Render
+  'https://daksh1879.github.io',    // GitHub Pages production frontend
   'http://localhost:3000',
+  'http://localhost:3001',
   'http://127.0.0.1:5500',
   'http://127.0.0.1:3000',
   null, // file:// protocol sends Origin: null

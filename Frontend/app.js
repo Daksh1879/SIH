@@ -1,11 +1,21 @@
 /* =========================================================
    app.js — LabelSetu frontend
-   Connects to the real Express backend at localhost:3001.
+   Connects to the Express backend (Render deployment).
    All mock/localStorage logic replaced with real API calls.
    Function names preserved so existing HTML pages work.
+
+   API_BASE resolution order:
+     1. window.LABELSETU_API_BASE  (set via inline <script> per page)
+     2. RENDER_BACKEND_URL constant below  (updated after Render deploy)
    ========================================================= */
 
-const API_BASE = 'http://localhost:3001/api';
+// ✅ Updated to the Render deployment URL after free-cloud deploy.
+// Change this value once you have your Render service URL.
+const RENDER_BACKEND_URL = 'https://labelsetu-backend.onrender.com/api';
+
+const API_BASE = (typeof window !== 'undefined' && window.LABELSETU_API_BASE)
+  ? window.LABELSETU_API_BASE
+  : RENDER_BACKEND_URL;
 
 /* =========================================================
    TOKEN HELPERS

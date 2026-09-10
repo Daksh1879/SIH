@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: labelsetu-backend
+    runtime: docker
+    dockerfilePath: ./Backend/Dockerfile
+    dockerContext: ./Backend
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: NODE_ENV
+        value: production
+      # Set these manually in the Render dashboard (never commit real values):
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        sync: false          # e.g. https://daksh1879.github.io/SIH
+      - key: OCR_SERVICE_URL
+        sync: false          # e.g. https://<hf-user>-labelsetu-cv.hf.space
