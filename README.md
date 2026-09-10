@@ -1,42 +1,56 @@
 # LabelSetu – Product Label Compliance Verification System
 
-An automated verification system designed for Smart India Hackathon (SIH 2026) to detect, analyze, and validate mandatory compliance details on packaged goods labels under Legal Metrology and consumer protection regulations.
+An automated verification system designed for Smart India Hackathon (SIH 2026) to detect, analyze, and validate mandatory compliance details on packaged goods labels under the Legal Metrology (Packaged Commodities) Rules, 2011.
 
 ## 1. Project Information
 
 - **Project Title:** LabelSetu – Automated Packaged Goods Label Compliance Verification
-- **PS ID:** SIH2026-LABELSETU-01
-- **PS Title:** AI/OCR-based automated verification of packaged commodity label compliance
+- **PS ID:** SIH26034
+- **PS Title:** Software System to check compliance of Packaged Commodities under Legal Metrology (Packaged Commodities) Rules, 2011 by scanning products, images and labels.
+- **Team Name:** 404pass
 - **Category:** Software
-- **Theme:** Smart Automation / Consumer Protection & Legal Metrology
+- **Theme:** Miscellaneous
 
 ## 2. Problem Statement
 
-Consumers and regulatory inspectors frequently encounter packaged commodities with missing or non-compliant mandatory declarations such as MRP, net quantity, manufacturer information, manufacturing/expiry date, or consumer care details. Manually checking packaging compliance across thousands of retail items is slow, prone to human oversight, and impractical for large-scale enforcement.
+Mandatory label declarations are required under the Legal Metrology (Packaged Commodities) Rules, 2011. Missing or incomplete declarations are common due to packaging design oversight, shifting regulatory norms, or lack of accessible verification tools. 
+
+Manual checking across thousands of retail items is slow, inconsistent, and rule-dependent. Non-compliance leads to regulatory penalties, product recalls, and costly reprint corrections. Currently, no simple, self-serve pre-print verification tool exists for manufacturers, packers, and sellers.
 
 ## 3. Proposed Solution
 
-LabelSetu streamlines this process by enabling users and inspectors to upload product label images through a clean web dashboard. The backend extracts text using optical character recognition (OCR), compares identified packaging fields against category-specific regulatory requirements stored in a cloud database, returns clear PASS/FAIL compliance statuses highlighting any missing fields, and preserves scan history for auditing.
+LabelSetu works on the principle of Automated Label Information Extraction and Rule-Based Compliance Verification:
+
+1. **Label Capture:** A product label is captured or uploaded as an image.
+2. **OCR Text Extraction:** Optical Character Recognition (OCR) extracts textual information from the label and identifies important fields such as MRP, net quantity, manufacturer details, dates, and consumer care information.
+3. **Category-Based Rule Mapping:** The selected product category determines the set of mandatory declarations required under the Legal Metrology (Packaged Commodities) Rules, 2011.
+4. **Missing Declaration Detection:** The system compares extracted fields against mandatory requirements using a rule-based compliance engine, identifying which declarations are present and which are missing.
+5. **Report & History:** The result is presented as a clear Pass/Fail status with a Found vs. Missing breakdown and saved in a historical audit log.
+6. **Modular Architecture:** The rule engine is decoupled from the OCR technology, allowing text-extraction models to improve independently without altering compliance logic.
 
 ## 4. Key Features
 
 - Product label image upload (supports JPEG, PNG, WebP)
 - Optical Character Recognition (OCR) text extraction
-- Category-specific compliance verification (Food, Cosmetics, General commodities)
-- Real-time PASS / FAIL validation status with missing field highlights
-- User authentication and secure JWT session management
-- Historical audit dashboard with individual scan reports
-- Dynamic database-backed compliance rule management
+- Category-based rule mapping (Legal Metrology Packaged Commodities Rules, 2011)
+- Mandatory declaration detection with Found vs. Missing breakdown
+- Real-time Pass / Fail validation status and structured verification report
+- User authentication with secure JWT session management
+- Historical audit dashboard with individual scan inspection
+- Database-backed dynamic compliance rule management
 
 ## 5. Technology Stack
 
 - **Frontend:** HTML5, CSS3, Vanilla JavaScript
 - **Backend:** Node.js, Express.js
+- **File Handling:** Multer
 - **Database:** MongoDB Atlas (Mongoose ODM)
-- **OCR / Computer Vision:** Tesseract.js / OpenCV / Python CV microservice
-- **Authentication:** JWT (jsonwebtoken), bcryptjs
+- **OCR / Computer Vision:** OCR Service Interface / Python CV microservice (OpenCV, Tesseract)
+- **Authentication:** JSON Web Tokens (JWT), bcryptjs
 
 ## 6. Architecture
+
+See [docs/architecture.md](docs/architecture.md).
 
 ```text
 User / Inspector
@@ -52,7 +66,7 @@ Backend REST API (Node.js & Express)
 OCR & Field Extraction Engine
       │
       ▼
-Compliance Engine (Rules Matcher: Food, Cosmetics, General)
+Compliance Engine (Legal Metrology Rules 2011)
       │
       ▼
 Audit Report & Verification Dashboard (PASS / FAIL)
@@ -109,7 +123,8 @@ SIH/
 │   │   └── upload.middleware.js
 │   └── scripts/
 │       └── seed.js
-└── cv_service/
+├── cv_service/
+└── legalmetrology_part3/
 ```
 
 ### What goes where?
@@ -118,7 +133,7 @@ SIH/
 |---|---|
 | Frontend client | `Frontend/` |
 | Express API & Database models | `Backend/` |
-| CV / OCR microservice | `cv_service/` |
+| CV / OCR microservice | `cv_service/` & `legalmetrology_part3/` |
 | Compliance rule seed script | `Backend/scripts/seed.js` |
 | Project overview | `README.md` |
 
@@ -126,7 +141,8 @@ SIH/
 
 Keep your final SIH presentation in the repository whenever the file size allows it.
 
-See [submission/PRESENTATION.md](submission/PRESENTATION.md) for the required format.
+- **Presentation Link (Canva):** [View Team 404pass SIH Presentation](https://www.canva.com/design/DAHUmSoMgMo/RKKyxu2Sck6mA3cuA8gCRA/view)
+- See [submission/PRESENTATION.md](submission/PRESENTATION.md) for the required format.
 
 If the PPT is too large for GitHub, use Google Drive/OneDrive and put the accessible viewer link in `submission/PRESENTATION.md`.
 
@@ -176,10 +192,10 @@ Access the frontend by opening `Frontend/index.html` or running a local static s
 
 ## 13. Future Scope
 
-- Multi-lingual label parsing supporting regional Indian languages (Hindi, Tamil, Telugu, etc.).
-- Barcode and QR code cross-referencing with national GS1 databases.
-- Automated nutritional table parsing and allergen warnings.
-- Mobile application for real-time edge scanning by field inspectors and consumers.
+- Multilingual OCR supporting regional Indian languages on packaging labels.
+- Barcode and QR code cross-referencing with official national registration databases.
+- Automated nutritional information table parsing and allergen declaration checks.
+- Mobile application for real-time edge scanning by field inspectors, manufacturers, and consumers.
 
 ## Important
 
